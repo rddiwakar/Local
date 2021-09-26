@@ -1,6 +1,5 @@
-
 const User = require("../model/user.js");
-
+const sendEmail = require("../utils/sendemail.js")
 
 exports.register = async(req,res,next) =>{
     const {username,email,password} = req.body;
@@ -48,25 +47,37 @@ exports.forgotPassword = async(req,res,next) =>{
                 error:"Email could not be send"
             })
         }
-        const resetToken = user.getResetPasswordToken();
+        const userId = user._id;
         await user.save();
-        const resetUrl = `http://localhost:4000/passwordreset/${resetToken}`;
-        const message = `
-            <h1>You have requested a password rest</h1>
-            <p>please go to this link for reset password</p>
-            <a href = ${resetUrl} clicktracking == off>${resetUrl}</a>
-        `
+
         try {
-            
+            await sendEmail({
+                to: email,
+                from: "rahuldiwakar611@gmail.com",
+                subject: "Password Reset Link",
+                html: `
+                    <p>Hello, ${email}, Here is your password reset link: <a href="#">${`http://localhost:5000/resetpassword/${userId}`}</a> <small>${userId}</small></p>
+                `,
+            });
+
+            res.send("Email Sent");
         } catch (error) {
-            
+            console.log(error)
         }
     } catch (error) {
         
     }
 }
-exports.resetPassword = (req,res,next) =>{
-    res.send("reset password route")
+exports.resetPassword = async (req,res,next) =>{
+    try {
+        const {newpassword} = req.body;
+        const id = req.params.id
+
+        const updatedUser = await User.findByIdAndUpdate(id,{password:newpassword}, {new: true});
+        updatedUser.save().then(() => res.send(updatedUser));
+    } catch (error) {
+        next(error);
+    }
 }
 
 const sendToken = (user,statuscode,res) =>{
