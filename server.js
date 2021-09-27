@@ -12,6 +12,7 @@ connectdb();
 
 app.use(passport.initialize());
 app.use(express.json());
+app.use("/uploads", express.static("uploads"));
 app.use("/api/auth",require("./routes/auth"));
 app.use("/api/private",require("./routes/private"));
 app.use ("/api/oAuth" , require("./routes/oAuth"))

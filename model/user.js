@@ -19,7 +19,11 @@ const userSchema = new mongoose.Schema ({
         type:String,
         minlength: 6,
         default: "123456"
-    }
+    },
+    avatar: {
+        type: String,
+        default: "https://png.pngtree.com/element_our/20200610/ourmid/pngtree-black-default-avatar-image_2237212.jpg",
+    },
 });
 userSchema.pre("save", function(next){
     console.log("Inside pre save");
