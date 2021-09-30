@@ -4,12 +4,16 @@ const postSchema  = new mongoose.Schema({
         type:String,
         maxlength: 180
     },
-    likes:{
-        type:Number,
-        default:0
-    },
+    likes:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+    }],
     tags:String,
-    createdby:String
+    createdby: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: "User"
+    }
     
 })
 const Post = mongoose.model("Post",postSchema);

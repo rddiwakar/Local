@@ -40,7 +40,7 @@ exports.login = async(req,res,next) =>{
 exports.forgotPassword = async(req,res,next) =>{
     const {email} = req.body;
     try {
-        const user = await User.findOne();
+        const user = await User.findOne({email});
         if(!user){
             return res.status(404).json({
                 success:false,

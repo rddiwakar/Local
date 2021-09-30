@@ -7,7 +7,7 @@ exports.protect = async(req,res,next) =>{
         token = req.headers.authorization.split(" ")[1]
     }
     if(!token){
-        next(new Error("Not authorized to access this route"));
+        return next(new Error("Not authorized to access this route"));
     }
     try {
         const decoded = JWT.verify(token,process.env.JWT_SECRET);

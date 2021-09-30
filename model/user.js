@@ -24,13 +24,12 @@ const userSchema = new mongoose.Schema ({
         type: String,
         default: "https://png.pngtree.com/element_our/20200610/ourmid/pngtree-black-default-avatar-image_2237212.jpg",
     },
-    post:{
-        type:Array,
-        default:[]
-    },
+    posts:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Post"
+    }],
 });
 userSchema.pre("save", function(next){
-    console.log("Inside pre save");
     if(!this.isModified("password")){
         next()
     }
@@ -46,6 +45,6 @@ userSchema.methods.getSignedToken = function(){
     return JWT.sign({id:this._id},process.env.JWT_SECRET, {expiresIn: process.env.JWT_EXPIRE})
 }
 
-const user = mongoose.model("user", userSchema);
+const User = mongoose.model("User", userSchema);
 
-module.exports = user;
+module.exports = User;
