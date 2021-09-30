@@ -24,6 +24,10 @@ const userSchema = new mongoose.Schema ({
         type: String,
         default: "https://png.pngtree.com/element_our/20200610/ourmid/pngtree-black-default-avatar-image_2237212.jpg",
     },
+    post:{
+        type:Array,
+        default:[]
+    },
 });
 userSchema.pre("save", function(next){
     console.log("Inside pre save");
