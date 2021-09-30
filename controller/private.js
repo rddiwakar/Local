@@ -1,4 +1,5 @@
-const User = require("../model/user")
+const User = require("../model/user");
+const fetchNews = require("../utils/newsapi")
 exports.getPrivateData = (req,res,next) =>{
     try {
         res.status(200).json({
@@ -22,4 +23,14 @@ exports.createAvatar = async function(req, res, next) {
     } catch (error) {
         next(error)
     }
+}
+exports.getNews = async (req,res,next) =>{
+  try {
+    const { q } = req.query;
+
+    fetchNews(q)
+        .then(response => res.json(response));
+  } catch (error) {
+    next(error);
+  }
 }
