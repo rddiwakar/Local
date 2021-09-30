@@ -1,5 +1,6 @@
 const User = require("../model/user.js");
-const sendEmail = require("../utils/sendemail.js")
+const sendEmail = require("../utils/sendemail.js");
+const Post = require("../model/post")
 
 exports.register = async(req,res,next) =>{
     const {username,email,password} = req.body;
@@ -79,7 +80,16 @@ exports.resetPassword = async (req,res,next) =>{
         next(error);
     }
 }
-
+exports.deleteUser = async (req,res,next) =>{
+    const {id} = req.params;
+    try {
+        await User.deleteOne({_id:id});
+        await Post.deleteMany({createdby:id});
+        res.send("user deleted")
+    } catch (error) {
+        next(error)
+    }
+}
 const sendToken = (user,statuscode,res) =>{
  const token = user.getSignedToken();
  res.status(statuscode).json({success:true, token})

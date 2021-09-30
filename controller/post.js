@@ -31,3 +31,12 @@ exports.likePost = async(req,res,next) =>{
         next(error)
     }
 }
+exports.deletePost = async(req,res,next) =>{
+    const {id} = req.params;
+    try {
+        await Post.deleteOne({_id:id});
+        res.send("post deleted")
+    } catch (error) {
+        next(error)
+    }
+}
