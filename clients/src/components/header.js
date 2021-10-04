@@ -1,11 +1,12 @@
-import { Link} from 'react-router-dom'
+import { Link} from 'react-router-dom';
+
 function Header(){
     return(
-        <div className="Header">
+        <div className="header">
             <ul>
-                <li > <Link to="/">LOgo Local Morning </Link></li>
-                <li> <Link to="/signup">SignUP </Link></li>
-                <li> <Link to="/login">Login </Link></li>
+                <li className="navbar-logo"> <Link to="/">LOgo Local Morning </Link></li>
+                <li className="navbar-signup"> <Link to="/signup">SignUp </Link></li>
+                <li className="navbar-login"> <Link to="/login">Login </Link></li>
             </ul>
             <hr/>
         </div>

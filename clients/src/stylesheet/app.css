@@ -1,0 +1,25 @@
+.header ul{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    height: 6rem;
+    justify-content: space-between;
+    text-align: center;
+}
+.navbar-logo{
+    width:60%
+}
+.navbar-signup{
+    width:20%
+}
+.navbar-login{
+    width:20%
+}
+.hero{
+    
+    width:70%;
+    border : 1px inset black;
+    padding: 1rem 2rem;
+    margin:10rem auto;
+    border-radius: 10px;
+}

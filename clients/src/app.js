@@ -1,6 +1,7 @@
 import React from "react";
 import MainBody from "./components/mainBody";
-import Header from "./components/header"
+import Header from "./components/header";
+import "./stylesheet/app.css"
 
 
 function App(){
