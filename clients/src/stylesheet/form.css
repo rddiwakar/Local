@@ -1,0 +1,28 @@
+
+.form-data {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height:100vh
+    
+}
+.auth-form {
+    box-sizing: border-box;
+    border: 1px solid black;
+    box-shadow: 1px 2px 2px inset;
+    padding: 5rem 10rem
+}
+.marginStyle{
+    margin-bottom:1rem;
+    font-size: 2rem;
+}
+.auth-form input,
+.auth-form button {
+    padding: 1rem 2rem;
+    border-radius: .5rem;
+}
+@media all and (max-width:770px){
+    .form-data{
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,19 @@
+html{
+    font-size: 10px;
+}
+body{
+    font-size: 2rem;
+}
+a{
+    text-decoration: none;
+}
+@media all and (max-width:770px){
+    html{
+        font-size: 8px;
+    }
+}
+@media all and (max-width:400px){
+    html{
+        font-size: 5.5px;
+    }
+}
