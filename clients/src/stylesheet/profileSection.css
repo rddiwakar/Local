@@ -1,0 +1,39 @@
+
+.navigation{
+    width:20%;
+    border-right: 1px solid lightgray;
+    text-align:center;
+    padding:1rem;
+}
+.profile{
+    border:1px solid black;
+    padding:1rem;
+    box-shadow: 2px 2px 1px gray;
+    border-radius: 10px;
+    
+}
+.profile-image{
+    border-radius:50%;
+    width:8rem;
+    border: 1px solid black;
+    position:absolute;
+    top:6rem;
+    left:9rem;
+   
+}
+.profile-background{
+    background:aqua;
+    padding:5rem;
+    position: relative;
+}
+.profile figcaption{
+    padding-top:50px
+}
+.profile-follow{
+    display: flex;
+    justify-content: space-between;
+}
+.profile section{
+    width:70%;
+    margin:auto;
+}
