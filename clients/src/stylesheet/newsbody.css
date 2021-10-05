@@ -1,6 +1,20 @@
 .newsbody{
     width:40%;
-    
-    display: flex;
-    justify-content: space-between;
+    padding: 1rem;
+    margin: 1rem
 }
+.newsbody section{
+    margin:1rem;
+    padding:1rem
+}
+.newsbody li{
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 1px 2px 1px gray;
+    margin:1rem
+}
+.newsbody li small{
+    color:blue;
+}
+
