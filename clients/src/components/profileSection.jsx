@@ -29,9 +29,9 @@ function profileSection(){
                 <hr />
                 <section >
                         <ul>
-                            <li ><Link to="mypost" className="profile-follow"> <MyPost /> <span>My Post</span> </Link></li>
-                            <li ><Link to= "mypost" className="profile-follow"><ThumbUpLineIcon /><span>Liked Post</span></Link></li>
-                            <li ><Link to="/profilesetting" className="profile-follow"><Settings2LineIcon/> <span>Setting</span></Link> </li>
+                            <li ><Link to="/private/dashboard/mypost" className="profile-follow"> <MyPost /> <span>My Post</span> </Link></li>
+                            <li ><Link to= "/private/dashboard/mypost" className="profile-follow"><ThumbUpLineIcon /><span>Liked Post</span></Link></li>
+                            <li ><Link to="/private/dashboard/setting" className="profile-follow"><Settings2LineIcon/> <span>Setting</span></Link> </li>
                             <li className="profile-follow"><LogOut /><span>Log Out</span></li>
                         </ul>
                         

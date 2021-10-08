@@ -12,11 +12,11 @@ function Login(){
                 <Input type="password" title = "Password" placeholder="Please enter your password" />
                 <Input className="button" type="submit" value="submit"/>
                 <div >
-                    <Link to="/signup">Create account </Link>
+                    <Link to="/public/signup">Create account </Link>
                     <br />
                     <Link to="/forgetPassword">Forgot password ? </Link>
                 </div>
-                <hr />
+                <br />
                 <button className="button">Login with google</button>
             </form>
         </div>

@@ -5,8 +5,8 @@ function Header(){
         <div className="header">
             <ul>
                 <li className="navbar-logo"> <Link to="/">LOgo Local Morning </Link></li>
-                <li className="navbar-signup"> <Link to="/signup">SignUp </Link></li>
-                <li className="navbar-login"> <Link to="/login">Login </Link></li>
+                <li className="navbar-signup"> <Link to="/public/signup">SignUp </Link></li>
+                <li className="navbar-login"> <Link to="/public/login">Login </Link></li>
             </ul>
             <hr/>
         </div>

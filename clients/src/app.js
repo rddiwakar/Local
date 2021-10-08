@@ -1,14 +1,15 @@
-import React from "react";
-import MainBody from "./components/mainBody";
-import Header from "./components/header";
-import "./stylesheet/app.css"
+import React,{useState} from "react";
+import PublicRouting from "./components/Router";
+import Dashboard from "./components/dashboard";
+
+
 
 
 function App(){
+    const[view,setview]= useState(false)
     return(
         <div>
-            <Header />
-            < MainBody />
+           {view ? <PublicRouting />: <Dashboard />}
         </div>
     )
 }

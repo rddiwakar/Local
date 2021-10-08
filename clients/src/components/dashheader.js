@@ -5,10 +5,10 @@ function DashHeader(){
     return(
         <div className="dash_header">
             <div>Local Morning</div>
-            <div className="searchbar">
-                <input  placeholder="search here"/>
-                <p><SearchIcon size="2rem"/></p>
-            </div>  
+                <div className="searchbar">
+                    <input  placeholder="search here"/>
+                    <p><SearchIcon size="2rem"/></p>
+                </div>  
         </div>
     )
 }

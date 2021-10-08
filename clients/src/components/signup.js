@@ -14,9 +14,9 @@ function SignUp(){
                 <Input type="password" title = "Password" placeholder="Please enter your password" />
                 <Input  type="submit" value="submit"/>
                 <div>
-                    <Link to="/login">Login with existing account</Link>
+                    <Link to="/public/login">Login with existing account</Link>
                 </div>
-                <hr />
+                <br />
                 <button >Login with google</button>
             </form>
         </div>
