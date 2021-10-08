@@ -2,7 +2,9 @@ import "../stylesheet/profileSection.css";
 import Settings2LineIcon from "remixicon-react/Settings2LineIcon";
 import ThumbUpLineIcon from "remixicon-react/ThumbUpLineIcon";
 import MyPost from "remixicon-react/Message2LineIcon";
-import LogOut from "remixicon-react/LogoutBoxLineIcon"
+import LogOut from "remixicon-react/LogoutBoxLineIcon";
+
+import {Link} from "react-router-dom";
 function profileSection(){
     return(
         <div className="navigation">
@@ -26,12 +28,13 @@ function profileSection(){
                 </div>
                 <hr />
                 <section >
-                    <ul>
-                        <li className="profile-follow"><MyPost /> <span>My Post</span></li>
-                        <li className="profile-follow"><ThumbUpLineIcon /><span>Liked Post</span></li>
-                        <li className="profile-follow"><Settings2LineIcon/> <span>Setting</span></li>
-                        <li className="profile-follow"><LogOut /><span>Log Out</span></li>
-                    </ul>
+                        <ul>
+                            <li ><Link to="mypost" className="profile-follow"> <MyPost /> <span>My Post</span> </Link></li>
+                            <li ><Link to= "mypost" className="profile-follow"><ThumbUpLineIcon /><span>Liked Post</span></Link></li>
+                            <li ><Link to="/profilesetting" className="profile-follow"><Settings2LineIcon/> <span>Setting</span></Link> </li>
+                            <li className="profile-follow"><LogOut /><span>Log Out</span></li>
+                        </ul>
+                        
                 </section>
             </figure>
         </div>

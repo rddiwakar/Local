@@ -1,5 +1,5 @@
 .newsbody{
-    width:40%;
+    width:35%;
     padding: 1rem;
     margin: 1rem
 }
@@ -17,4 +17,10 @@
 .newsbody li small{
     color:blue;
 }
+
+@media screen and (max-width: 760px) {
+    .newsbody{
+        width:98%;
+    }
+  }
 

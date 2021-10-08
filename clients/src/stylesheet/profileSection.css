@@ -18,7 +18,8 @@
     border: 1px solid black;
     position:absolute;
     top:6rem;
-    left:9rem;
+    left:50%;
+    margin-left: -4rem;
    
 }
 .profile-background{
@@ -37,3 +38,8 @@
     width:70%;
     margin:auto;
 }
+@media screen and (max-width: 760px) {
+    .navigation{
+        width:98%;
+    }
+  }

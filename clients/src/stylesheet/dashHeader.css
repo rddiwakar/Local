@@ -1,0 +1,30 @@
+.dash_header{
+    display:flex;
+    justify-content: space-between;
+    height: 6rem;
+    align-items: center;
+    border-bottom: 1px solid lightgray;
+}
+.dash_header .searchbar{
+    width:70%;
+    display: flex;
+}
+.searchbar input{
+    padding:1rem;
+    width:80%;
+}
+
+.dash_header p{
+    height:2rem;
+    padding:1rem;
+    border:1px solid black;
+}
+@media screen and (max-width: 600px) {
+    .searchbar input{
+        padding:.4rem 3rem;
+    }
+    .dash_header button{
+        border:none
+    }
+    
+  }

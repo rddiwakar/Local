@@ -1,13 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './stylesheet/index.css';
-import Routing from './components/Router';
-import DashBoard from "./components/dashboard"
+import Dashboard from "./components/dashboard";
+//import Routing from './components/Router';
+//import DesktopDashBoard from "./components/dashboard";
+//import MobileDashboard from "./components/mobiledashboard"
 
 
 ReactDOM.render( 
   // <Routing />,
-  <DashBoard />
+   <Dashboard />
+  // <MobileDashboard />
   ,
   document.getElementById('root')
 );

@@ -1,5 +1,5 @@
 .postform{
-    width:40%;
+    width:45%;
     border-right: 1px solid lightgray;
     padding: 1rem;
 
@@ -63,3 +63,13 @@
     height:100%;
     border:1px outset blue
 }
+.myPost{
+    width:60%;
+    margin:auto;
+}
+@media screen and (max-width: 760px) {
+    .postform{
+        width:98%;
+       
+    }
+  }
