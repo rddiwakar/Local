@@ -28,6 +28,8 @@ function Dashboard(){
             <DashHeader />
                 <Router> 
                         <Switch>
+                            {/* <Route path="/private/dashboard/profilesection" component={ProfileSection} />           
+                            <Route path="/private/dashboard/newssection" component={NewsSection} /> */}
                                 <Route path ="/private/dashboard/setting" component={ ProfileSetting } />
                                 <Route path ="/private/dashboard/mypost" component={MyPost} /> 
                                 {screenSize > 760 ?
@@ -40,9 +42,7 @@ function Dashboard(){
                                 </Route>
                                 :<div>
                                     <Route exact path="/private/dashboard" component={PostSection} />
-                         
-                                    <Route path="/private/dashboard/profilesection" component={ProfileSection} />
-                            
+                                    <Route path="/private/dashboard/profilesection" component={ProfileSection} />           
                                     <Route path="/private/dashboard/newssection" component={NewsSection} />
                                 </div>}           
                         </Switch> 
