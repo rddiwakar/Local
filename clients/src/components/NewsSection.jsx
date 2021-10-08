@@ -1,4 +1,4 @@
-import "../stylesheet/newsbody.css"
+import "../stylesheet/newssection.css"
 
 function NewsSection(){
     return(
