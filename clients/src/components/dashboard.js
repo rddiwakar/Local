@@ -30,28 +30,31 @@ function Dashboard(){
                         <Switch>
                                 <Route path ="/private/dashboard/setting" component={ ProfileSetting } />
                                 <Route path ="/private/dashboard/mypost" component={MyPost} /> 
-                                {screenSize > 760 ? <Route path="/private/dashboard">
-                                                        <div className="dashboard">
-                                                            <ProfileSection />
-                                                            <PostForm />
-                                                            <NewsBody />               
-                                                        </div> 
-                                                    </Route>:<div>
-                                                                <Route exact path="/private/dashboard" component={PostForm} />
-                                                
-                                                                <Route path="/private/dashboard/profilesection" component={ProfileSection} />
-                                                        
-                                                                <Route path="/private/dashboard/newssection" component={NewsBody} />
-                                                            </div>}   
+                                {screenSize > 760 ?
+                                 <Route path="/private/dashboard">
+                                    <div className="dashboard">
+                                        <ProfileSection />
+                                        <PostForm />
+                                        <NewsBody />               
+                                    </div> 
+                                </Route>
+                                :<div>
+                                    <Route exact path="/private/dashboard" component={PostForm} />
+                         
+                                    <Route path="/private/dashboard/profilesection" component={ProfileSection} />
+                            
+                                    <Route path="/private/dashboard/newssection" component={NewsBody} />
+                                </div>}           
                         </Switch> 
-                        {screenSize > 760? "": <div>
-                                                    <hr />
-                                                    <div className="mobile-navigator">
-                                                        <button><Link to="/private/dashboard"><HomeIcon /></Link> </button>
-                                                        <button><Link to="/private/dashboard/newssection"><NewsIcon /></Link> </button>
-                                                        <button><Link to="/private/dashboard/profilesection"><ProfileIcon /></Link> </button>
-                                                    </div>
-                                                </div>}      
+                        {screenSize > 760 ?
+                         "": <div>
+                                <hr />
+                                <div className="mobile-navigator">
+                                    <button><Link to="/private/dashboard"><HomeIcon /></Link> </button>
+                                    <button><Link to="/private/dashboard/newssection"><NewsIcon /></Link> </button>
+                                    <button><Link to="/private/dashboard/profilesection"><ProfileIcon /></Link> </button>
+                                </div>                       
+                            </div>}      
                 </Router>
         </div>
     )
