@@ -3,7 +3,7 @@ import Gallery from "remixicon-react/ImageLineIcon";
 import {Input} from "antd";
 const {TextArea} = Input;
 
-function PostForm(){
+function PostSection(){
     return(
         <div className="postform">
             <section className="postform-data">
@@ -57,4 +57,4 @@ function PostForm(){
         </div>
     )
 }
-export default PostForm;
+export default PostSection;

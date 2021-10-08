@@ -2,11 +2,11 @@ import React,{useState, useEffect} from "react";
 import HomeIcon from "remixicon-react/Home2LineIcon";
 import NewsIcon from "remixicon-react/NewspaperLineIcon";
 import ProfileIcon from "remixicon-react/UserLineIcon";
-import NewsBody from "./NewsBody";
+import NewsSection from "./NewsSection";
 import "../stylesheet/dashboard.css"
 import DashHeader from "./dashheader"
 import ProfileSection from "./profileSection";
-import PostForm from "./PostForm";
+import PostSection from "./PostSection";
 import {BrowserRouter as Router, Switch, Route,Link} from "react-router-dom";
 import ProfileSetting from "./profilesetting";
 import MyPost from "./Mypost";
@@ -34,16 +34,16 @@ function Dashboard(){
                                  <Route path="/private/dashboard">
                                     <div className="dashboard">
                                         <ProfileSection />
-                                        <PostForm />
-                                        <NewsBody />               
+                                        <PostSection />
+                                        <NewsSection />               
                                     </div> 
                                 </Route>
                                 :<div>
-                                    <Route exact path="/private/dashboard" component={PostForm} />
+                                    <Route exact path="/private/dashboard" component={PostSection} />
                          
                                     <Route path="/private/dashboard/profilesection" component={ProfileSection} />
                             
-                                    <Route path="/private/dashboard/newssection" component={NewsBody} />
+                                    <Route path="/private/dashboard/newssection" component={NewsSection} />
                                 </div>}           
                         </Switch> 
                         {screenSize > 760 ?

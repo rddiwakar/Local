@@ -1,6 +1,6 @@
 import "../stylesheet/newsbody.css"
 
-function NewsBody(){
+function NewsSection(){
     return(
         <div className="newsbody">
             <section className="newsbody-header">
@@ -38,4 +38,4 @@ function NewsBody(){
         </div>
     )
 }
-export default NewsBody;
+export default NewsSection;
