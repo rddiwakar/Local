@@ -1,6 +1,7 @@
 import "../stylesheet/postform.css";
 import Gallery from "remixicon-react/ImageLineIcon";
 import {Input} from "antd";
+import { Link } from "react-router-dom";
 const {TextArea} = Input;
 
 function PostSection(){
@@ -21,10 +22,13 @@ function PostSection(){
             </section>
             <hr />
             <section className="postform-post">
-                <div className="form-post-header">
-                    <img className="logo-img" src ="https://pbs.twimg.com/profile_images/1395655338628587524/XOxnFDlg_400x400.jpg" alt="profile"  />
-                    <h3>rddiwakar</h3>
-                </div>
+                <Link to="/private/dashboard/mypost">
+                    <div className="form-post-header">
+                        <img className="logo-img" src ="https://pbs.twimg.com/profile_images/1395655338628587524/XOxnFDlg_400x400.jpg" alt="profile"  />
+                        <h3>rddiwakar</h3>
+                    </div>
+                </Link>
+                
                 <hr />
                 <div>
                     <h3>Lorem</h3>
@@ -38,10 +42,12 @@ function PostSection(){
                 </div>
             </section>
             <section className="postform-post">
-                <div className="form-post-header">
-                    <img className="logo-img" src ="https://pbs.twimg.com/profile_images/1395655338628587524/XOxnFDlg_400x400.jpg" alt="profile"  />
-                    <h3>rddiwakar</h3>
-                </div>
+                <Link to="/private/dashboard/mypost">
+                    <div className="form-post-header">
+                        <img className="logo-img" src ="https://pbs.twimg.com/profile_images/1395655338628587524/XOxnFDlg_400x400.jpg" alt="profile"  />
+                        <h3>rddiwakar</h3>
+                    </div>
+                </Link>
                 <hr />
                 <div>
                     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus necessitatibus assumenda facilis vero maxime cum molestias aliquid error quam nostrum velit illum sit, quos qui quibusdam et id neque. Eum!</p>

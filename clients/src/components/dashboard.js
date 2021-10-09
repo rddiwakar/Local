@@ -7,7 +7,7 @@ import "../stylesheet/dashboard.css"
 import DashHeader from "./dashheader"
 import ProfileSection from "./profileSection";
 import PostSection from "./PostSection";
-import {BrowserRouter as Router, Switch, Route,Link} from "react-router-dom";
+import { Switch, Route,Link} from "react-router-dom";
 import ProfileSetting from "./profilesetting";
 import MyPost from "./Mypost";
 
@@ -25,37 +25,35 @@ function Dashboard(){
 
     return(
         <div>
-            <DashHeader />
-                <Router> 
-                        <Switch>
-                            {/* <Route path="/private/dashboard/profilesection" component={ProfileSection} />           
-                            <Route path="/private/dashboard/newssection" component={NewsSection} /> */}
-                                <Route path ="/private/dashboard/setting" component={ ProfileSetting } />
-                                <Route path ="/private/dashboard/mypost" component={MyPost} /> 
-                                {screenSize > 760 ?
-                                 <Route path="/private/dashboard">
-                                    <div className="dashboard">
-                                        <ProfileSection />
-                                        <PostSection />
-                                        <NewsSection />               
-                                    </div> 
-                                </Route>
-                                :<div>
-                                    <Route exact path="/private/dashboard" component={PostSection} />
-                                    <Route path="/private/dashboard/profilesection" component={ProfileSection} />           
-                                    <Route path="/private/dashboard/newssection" component={NewsSection} />
-                                </div>}           
-                        </Switch> 
-                        {screenSize > 760 ?
-                         "": <div>
-                                <hr />
-                                <div className="mobile-navigator">
-                                    <button><Link to="/private/dashboard"><HomeIcon /></Link> </button>
-                                    <button><Link to="/private/dashboard/newssection"><NewsIcon /></Link> </button>
-                                    <button><Link to="/private/dashboard/profilesection"><ProfileIcon /></Link> </button>
-                                </div>                       
-                            </div>}      
-                </Router>
+           <DashHeader />
+                <Switch>
+                    {/* <Route path="/private/dashboard/profilesection" component={ProfileSection} />           
+                    <Route path="/private/dashboard/newssection" component={NewsSection} /> */}
+                    <Route path ="/private/dashboard/setting" component={ ProfileSetting } />
+                    <Route path ="/private/dashboard/mypost" component={MyPost} /> 
+                    {screenSize > 760 ?
+                    <Route path="/private/dashboard">
+                        <div className="dashboard">
+                            <ProfileSection />
+                            <PostSection />
+                            <NewsSection />               
+                        </div> 
+                    </Route>
+                    :<div>
+                        <Route exact path="/private/dashboard" component={PostSection} />
+                        <Route path="/private/dashboard/profilesection" component={ProfileSection} />           
+                        <Route path="/private/dashboard/newssection" component={NewsSection} />
+                    </div>}           
+                </Switch> 
+                {screenSize > 760 ?
+                     "": <div>
+                            <hr />
+                            <div className="mobile-navigator">
+                                <button><Link to="/private/dashboard"><HomeIcon /></Link> </button>
+                                <button><Link to="/private/dashboard/newssection"><NewsIcon /></Link> </button>
+                                <button><Link to="/private/dashboard/profilesection"><ProfileIcon /></Link> </button>
+                            </div>                       
+                        </div>}                
         </div>
     )
 }
