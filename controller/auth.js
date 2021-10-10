@@ -98,5 +98,5 @@ exports.deleteUser = async (req,res,next) =>{
 }
 const sendToken = (user,statuscode,res) =>{
  const token = user.getSignedToken();
- res.status(statuscode).json({success:true, token})
+ res.status(statuscode).json({user, success:true, token})
 }

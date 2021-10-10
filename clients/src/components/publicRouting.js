@@ -4,14 +4,16 @@ import MainBody from "./mainBody";
 import Login from "./login";
 import SignUp from "./signup";
 import { Route, Switch } from 'react-router-dom'
-const PublicRouting = () => {
+const PublicRouting = ({updateUser}) => {
     return(
       <div>
           <Header />
           <Switch>
-            <Route path="/public/signup" component={SignUp} />
+            <Route path="/public/signup">
+              <SignUp updateUser={updateUser} />
+            </Route>
             <Route path="/public/login" component={Login} />
-            <Route  path="/" component={MainBody} />
+            <Route  path="/public" component={MainBody} />
           </Switch>
       </div>
     )

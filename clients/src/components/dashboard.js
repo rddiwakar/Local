@@ -11,7 +11,7 @@ import { Switch, Route,Link} from "react-router-dom";
 import ProfileSetting from "./profilesetting";
 import MyPost from "./Mypost";
 
-function Dashboard(){
+function Dashboard({updateUser}){
     const [screenSize, setScreenSize] = useState(window.innerWidth);
 
     useEffect(() => {
@@ -34,14 +34,16 @@ function Dashboard(){
                     {screenSize > 760 ?
                     <Route path="/private/dashboard">
                         <div className="dashboard">
-                            <ProfileSection />
+                            <ProfileSection updateUser={updateUser} />
                             <PostSection />
                             <NewsSection />               
                         </div> 
                     </Route>
                     :<div>
                         <Route exact path="/private/dashboard" component={PostSection} />
-                        <Route path="/private/dashboard/profilesection" component={ProfileSection} />           
+                        <Route path="/private/dashboard/profilesection">
+                            <ProfileSection updateUser={updateUser} />    
+                        </Route>           
                         <Route path="/private/dashboard/newssection" component={NewsSection} />
                     </div>}           
                 </Switch> 
