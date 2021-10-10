@@ -1,4 +1,6 @@
 .dash_header{
+    margin:auto;
+    width:95%;
     display:flex;
     justify-content: space-between;
     height: 6rem;
