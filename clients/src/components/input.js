@@ -1,18 +1,20 @@
 
 import "../stylesheet/form.css"
-function Input({className,title,placeholder,type,value}){
+function Input({className,name,placeholder,type,value, onChange, onSubmit}){
     return(
         <div className="marginStyle">
-            {title ?
+            {name ?
             <>
-                <label>{title}</label>
+                <label>{name}</label>
                 <br />
             </> : ""}
             <input 
+                name={name}
                 className={className}
                 placeholder={placeholder}
                 type ={type}
                 value = {value}
+                onChange={onChange}
              />
         </div>
     )

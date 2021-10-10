@@ -5,10 +5,16 @@ const Post = require("../model/post")
 exports.register = async(req,res,next) =>{
     const {username,email,password} = req.body;
     try {
-       const user = await User.create({
-           username,email,password
-       });
-       sendToken(user,201,res)
+        const finduser = await User.findOne({email})
+        if(!finduser){
+            const user = await User.create({
+                username,email,password
+            });
+            sendToken(user,201,res)
+        }else{
+            res.send({success:false})
+        }
+       
     
 
     } catch (error) {
