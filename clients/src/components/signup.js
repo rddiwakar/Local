@@ -3,6 +3,7 @@ import {signIn} from "../api/auth"
 import Input from "./input"
 import {Link, useHistory} from "react-router-dom";
 import "../stylesheet/form.css";
+import Swal from 'sweetalert2'
 
 function SignUp({updateUser}){
         const history = useHistory();
@@ -23,13 +24,32 @@ function SignUp({updateUser}){
             event.preventDefault();
             signIn(signUpDetail)
                 .then((res) => {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                          toast.addEventListener('mouseenter', Swal.stopTimer)
+                          toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
                     if(res.data.success) {
-                        console.log(res.data);
+                        console.log(res.data.user)
                         localStorage.setItem("token", res.data.token);
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'Signed in successfully'
+                        })
                         updateUser(res.data.user);
                         history.push("/");
+                        
                     } else {
-                        // Show alert
+                        Toast.fire({
+                            icon: 'error',
+                            title: 'Email already exist!'
+                        })
                     }
                 })
                 .catch((error)=>console.log(error))   

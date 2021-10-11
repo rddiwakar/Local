@@ -1,6 +1,6 @@
 
 import "../stylesheet/form.css"
-function Input({className,name,placeholder,type,value, onChange, onSubmit}){
+function Input({className,name,placeholder,type,value, onChange}){
     return(
         <div className="marginStyle">
             {name ?

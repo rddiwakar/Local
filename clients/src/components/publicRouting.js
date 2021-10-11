@@ -12,7 +12,9 @@ const PublicRouting = ({updateUser}) => {
             <Route path="/public/signup">
               <SignUp updateUser={updateUser} />
             </Route>
-            <Route path="/public/login" component={Login} />
+            <Route  path="/public/login" >
+              <Login updateUser={updateUser} />
+            </Route>
             <Route  path="/public" component={MainBody} />
           </Switch>
       </div>
