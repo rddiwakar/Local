@@ -10,12 +10,13 @@ import PostSection from "./PostSection";
 import { Switch, Route,Link} from "react-router-dom";
 import ProfileSetting from "./profilesetting";
 import MyPost from "./Mypost";
+import {userInfo} from "../api/postapi";
 
-function Dashboard({updateUser}){
+function Dashboard({updateUser,user}){
     const [screenSize, setScreenSize] = useState(window.innerWidth);
-
+    const token = localStorage.token;
     useEffect(() => {
-        console.log("useEffect");
+        userInfo(token).then((res)=> {updateUser(res.data.user)})
         function updateScreenSize() {
             setScreenSize(window.innerWidth);
         }
@@ -34,15 +35,17 @@ function Dashboard({updateUser}){
                     {screenSize > 760 ?
                     <Route path="/private/dashboard">
                         <div className="dashboard">
-                            <ProfileSection updateUser={updateUser} />
-                            <PostSection />
+                            <ProfileSection updateUser={updateUser} user = {user} />
+                            <PostSection user = {user}/>
                             <NewsSection />               
                         </div> 
                     </Route>
                     :<div>
-                        <Route exact path="/private/dashboard" component={PostSection} />
+                        <Route exact path="/private/dashboard">
+                            <PostSection user = {user} />
+                        </Route>
                         <Route path="/private/dashboard/profilesection">
-                            <ProfileSection updateUser={updateUser} />    
+                            <ProfileSection updateUser={updateUser} user = {user} />    
                         </Route>           
                         <Route path="/private/dashboard/newssection" component={NewsSection} />
                     </div>}           

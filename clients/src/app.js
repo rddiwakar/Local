@@ -1,10 +1,12 @@
-import React, {useState} from "react";
+import React, { useState} from "react";
 import PublicRouting from "./components/publicRouting";
 import Dashboard from "./components/dashboard";
+
+
 import {Redirect, Route, Switch} from "react-router-dom";
 
 function App(){
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState({});
 
     const updateUser = (user) => {
         setUser(user);
@@ -27,7 +29,7 @@ function App(){
         return (
             <Switch>
                 <Route path="/private/dashboard">
-                    <Dashboard updateUser={updateUser} />
+                    <Dashboard updateUser={updateUser} user={user} />
                 </Route>
                 <Route path="/">
                     <Redirect to="/private/dashboard" />
@@ -38,7 +40,7 @@ function App(){
 
     return(
         <>
-            {user || localStorage.token ? privateRoutes() : publicRoutes()}
+            { localStorage.token ? privateRoutes() : publicRoutes()}
         </>
     )
 }

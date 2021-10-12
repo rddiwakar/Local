@@ -11,11 +11,10 @@ export  const signIn = (signInDetails)=> axios({
         "authorization": ""
     }
 });
-
-const url2 = "/api/auth/login"
+ 
 export  const logIn = (logInDetails)=> axios({
     method: "post",
-    url: url2,
+    url: "/api/auth/login",
     data: logInDetails,
     headers: {
         "content-type": "application/json",

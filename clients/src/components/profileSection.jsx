@@ -3,18 +3,21 @@ import Settings2LineIcon from "remixicon-react/Settings2LineIcon";
 import ThumbUpLineIcon from "remixicon-react/ThumbUpLineIcon";
 import MyPost from "remixicon-react/Message2LineIcon";
 import LogOut from "remixicon-react/LogoutBoxLineIcon";
-
+import React from "react";
 import {Link, useHistory} from "react-router-dom";
-function ProfileSection({updateUser}){
+
+function ProfileSection({updateUser, user}){
     const history = useHistory();
 
     return(
         <div className="navigation">
             <figure className="profile">
                 <div className="profile-background">
-                    <img className="profile-image" src="https://pbs.twimg.com/profile_images/1395655338628587524/XOxnFDlg_400x400.jpg" alt="profile" />
-                </div>               
-                <figcaption>Rahul Diwakar</figcaption>
+                    <img className="profile-image" src={user.avatar||"https://pbs.twimg.com/profile_images/1395655338628587524/XOxnFDlg_400x400.jpg"} alt="profile" />
+                </div>             
+                <figcaption>
+                    <h3>{user.username ||"user"}</h3>
+                </figcaption>
                 <p>Learning full stack development and building visionmad.com</p>
                 <br />
                 <hr />

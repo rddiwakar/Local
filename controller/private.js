@@ -5,7 +5,7 @@ exports.getPrivateData = (req,res,next) =>{
         res.status(200).json({
             success:true,
             user: req.user,
-            data:"you get access to the private data om this route"
+            message:"you get access to the private data on this route"
         })
     } catch (error) {
         next(error);
