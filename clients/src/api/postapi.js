@@ -8,3 +8,11 @@ export  const userInfo = (token) => axios({
         "authorization": "Bearer "+ token
     }
 })
+export  const postDataInfo = (payload) => axios({
+    method: "post",
+    url: "/api/private/post",
+    data:payload,
+    headers: {
+        "authorization": "Bearer "+ localStorage.token
+    }
+})
