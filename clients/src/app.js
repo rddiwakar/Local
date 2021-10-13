@@ -1,6 +1,7 @@
 import React, { useState} from "react";
 import PublicRouting from "./components/publicRouting";
 import Dashboard from "./components/dashboard";
+import {Gtoken} from "./components/g-token";
 
 
 import {Redirect, Route, Switch} from "react-router-dom";
@@ -15,6 +16,9 @@ function App(){
     const publicRoutes = () => {
         return (
             <Switch>
+                <Route path="/token">
+                    <Gtoken updateUser={updateUser} />
+                </Route>
                 <Route path="/public">
                     <PublicRouting updateUser={updateUser} />
                 </Route>

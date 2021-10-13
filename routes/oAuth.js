@@ -1,5 +1,6 @@
 const passport = require("passport")
 const express = require("express");
+const User = require("../model/user.js");
 const router = express.Router();
 
 router.route("/failure").get(
@@ -12,10 +13,12 @@ router.route("/google").get(
 
 router.route("/google/callback").get(
     passport.authenticate("google", { session: false, failureRedirect: "/failure" }),
-    (req, res) => {
-        // Redirect to frontend link with jwt token
-        // example - http://frontend-link/?jwt-token=525743
-        res.send("Google Auth successful");
+    async(req, res) => {
+        const user = await User.findOne({email:req.user.email});
+        const token = user.getSignedToken()
+
+        res.redirect("http://localhost:3000/token?t=" + token);
+        
     }
 );
 
