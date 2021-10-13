@@ -12,7 +12,11 @@ router.route("/upload-avatar").patch(
     upload.single("avatar"),
     createAvatar
 );
-router.route("/post").post(protect,createPost);
+router.route("/post").post(
+    protect,
+    upload.single("image"),
+    createPost
+);
 router.route("/post/like/:id").patch(protect,likePost);
 
 router.route("/post/delete/:id").delete(protect,deletePost);

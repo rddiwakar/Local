@@ -2,9 +2,15 @@ const Post = require("../model/post");
 const User = require("../model/user");
 const mongoose = require("mongoose");
 exports.createPost = async(req,res,next)=>{
-    req.body.createdby = req.user._id;
-    try {
-        const post = await Post.create(req.body);
+    const {content,tags} = req.body
+    const { path } = req.file;
+    try { 
+        const post = await Post.create({
+            content,
+            image: `http://localhost:5000/${path}`,
+            tags,
+            createdby: req.user._id
+        });
 
         await User.findByIdAndUpdate(req.user._id, {$push: {posts: post._id}});
 

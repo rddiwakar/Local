@@ -4,6 +4,10 @@ const postSchema  = new mongoose.Schema({
         type:String,
         maxlength: 180
     },
+    image: {
+        type: String,
+        default: ""
+    },
     likes:[{
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
