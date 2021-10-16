@@ -1,10 +1,11 @@
 const User = require("../model/user");
 const fetchNews = require("../utils/newsapi")
-exports.getPrivateData = (req,res,next) =>{
+exports.getPrivateData = async (req,res,next) =>{
     try {
+        const user = await User.findById(req.user._id).populate("posts");
         res.status(200).json({
             success:true,
-            user: req.user,
+            user,
             message:"you get access to the private data on this route"
         })
     } catch (error) {
