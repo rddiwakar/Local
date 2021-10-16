@@ -3,7 +3,7 @@ const router = express.Router();
 const { getPrivateData,createAvatar,getNews} = require("../controller/private.js");
 const { protect } = require("../middleware/auth.js");
 const upload = require("../utils/multer");
-const {createPost,likePost, deletePost} = require("../controller/post")
+const {createPost,likePost, deletePost, getAllPost} = require("../controller/post")
 
 
 router.route("/").get(protect, getPrivateData);
@@ -20,7 +20,8 @@ router.route("/post").post(
 router.route("/post/like/:id").patch(protect,likePost);
 
 router.route("/post/delete/:id").delete(protect,deletePost);
-router.route("/news").get(protect,getNews)
+router.route("/news").get(protect,getNews);
+router.route("/getallpost").get(protect,getAllPost)
 
 
 module.exports = router;

@@ -46,3 +46,11 @@ exports.deletePost = async(req,res,next) =>{
         next(error)
     }
 }
+exports.getAllPost = async(req,res,next) =>{
+    try {
+        const allPost = await Post.find({}).populate("createdby")
+        res.send(allPost)
+    } catch (error) {
+        next(error)
+    }
+}

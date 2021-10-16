@@ -23,3 +23,10 @@ export const newsApi = (query) => axios({
         "authorization": "Bearer "+ localStorage.token
     }
 })
+export const getAllPostData = () => axios({
+    method: "get",
+    url:`/api/private/getallpost`,
+    headers: {
+        "authorization": "Bearer "+ localStorage.token
+    }
+})

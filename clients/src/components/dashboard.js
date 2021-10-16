@@ -23,7 +23,7 @@ function Dashboard({updateUser,user}){
         }
 
         window.addEventListener("resize", updateScreenSize);
-    }, []);
+    }, [token,updateUser]);
 
     return(
         <div>

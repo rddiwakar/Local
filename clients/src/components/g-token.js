@@ -9,7 +9,7 @@ export const Gtoken = ({updateUser})=> {
             console.log(res.data.user)
             updateUser(res.data.user)
         })
-    },[])
+    },[token,updateUser])
     return (
         <div>
             loading...
