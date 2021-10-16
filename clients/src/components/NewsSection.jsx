@@ -1,6 +1,9 @@
-import "../stylesheet/newssection.css"
+// import NewsTopic from "./newsTopic";
 
-function NewsSection(){
+import "../stylesheet/newssection.css";
+
+function NewsSection({topics}){
+        console.log(topics)
     return(
         <div className="newsbody">
             <section className="newsbody-header">
@@ -9,30 +12,18 @@ function NewsSection(){
             <hr />
             <section>
                 <ul>
-                    <li>
-                        <div>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non mai labore consequuntur nostrum neque f</p>
-                            <small> 1hr ago</small>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non mai labore consequuntur nostrum neque f</p>
-                            <small> 1hr ago</small>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non mai labore consequuntur nostrum neque f</p>
-                            <small> 1hr ago</small>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non mai labore consequuntur nostrum neque f</p>
-                            <small> 1hr ago</small>
-                        </div>
-                    </li>
+                    {topics.map((topic)=>{
+                        return (<li>
+                                    <div>
+                                        <a href={topic.url} target="_blank">
+                                            <h4>{topic.title}</h4>
+                                            <p>{topic.description.slice(0,80)}.....</p>
+                                            <small>{topic.publishedAt}</small>
+                                        </a>
+                                    </div>
+                                </li>)
+                    })}
+                    
                 </ul>
             </section>
         </div>

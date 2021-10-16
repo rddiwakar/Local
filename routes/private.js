@@ -17,6 +17,7 @@ router.route("/post").post(
     upload.single("image"),
     createPost
 );
+router.route("/getpostbyid").get(getPost)
 router.route("/post/like/:id").patch(protect,likePost);
 
 router.route("/post/delete/:id").delete(protect,deletePost);

@@ -12,7 +12,7 @@ export const Gtoken = ({updateUser})=> {
     },[])
     return (
         <div>
-        loading...
+            loading...
         </div>
     )
 }

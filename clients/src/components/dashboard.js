@@ -13,6 +13,7 @@ import MyPost from "./Mypost";
 import {userInfo} from "../api/postapi";
 
 function Dashboard({updateUser,user}){
+    const [topics, setTopics]=useState([])
     const [screenSize, setScreenSize] = useState(window.innerWidth);
     const token = localStorage.token;
     useEffect(() => {
@@ -26,7 +27,7 @@ function Dashboard({updateUser,user}){
 
     return(
         <div>
-           <DashHeader />
+           <DashHeader setTopics={setTopics} />
                 <Switch>
                     {/* <Route path="/private/dashboard/profilesection" component={ProfileSection} />           
                     <Route path="/private/dashboard/newssection" component={NewsSection} /> */}
@@ -37,7 +38,7 @@ function Dashboard({updateUser,user}){
                         <div className="dashboard">
                             <ProfileSection updateUser={updateUser} user = {user} />
                             <PostSection user = {user}/>
-                            <NewsSection />               
+                            <NewsSection topics={topics} />               
                         </div> 
                     </Route>
                     :<div>

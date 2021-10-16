@@ -16,3 +16,10 @@ export  const postDataInfo = (payload) => axios({
         "authorization": "Bearer "+ localStorage.token
     }
 })
+export const newsApi = (query) => axios({
+    method: "get",
+    url:`/api/private/news?q=${query}}`,
+    headers: {
+        "authorization": "Bearer "+ localStorage.token
+    }
+})
