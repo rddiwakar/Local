@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import {likepost} from "../api/postapi"
+import {deletepost, likepost} from "../api/postapi"
 
 import "../stylesheet/postform.css";
 function MyPost({ user, updateUser }){
@@ -14,6 +14,12 @@ function MyPost({ user, updateUser }){
                 const { updatedUser } = res.data;
                 updateUser(updatedUser);
             })
+    }
+    const handleDelete = (id) =>{
+        deletepost(id).then(res => {
+            const { updatedUser } = res.data;
+            updateUser(updatedUser);
+        })
     }
 
     return(
@@ -35,6 +41,10 @@ function MyPost({ user, updateUser }){
                         <div>
                             <button onClick={()=>handleLike(post._id)} >Like {post.likes.length}</button>
                         </div>
+                        <div>
+                            <button onClick={()=>handleDelete(post._id)} >Delete</button>
+                        </div>
+                        
                     </section>)
                 })
             }

@@ -37,4 +37,11 @@ export  const likepost = (id) => axios({
         "authorization": "Bearer "+ localStorage.token
     }
 })
+export const deletepost = (id) => axios({
+    method:"delete",
+    url:"/api/private/post/delete/" + id,
+    headers: {
+        "authorization": "Bearer "+ localStorage.token
+    }
+})
 

@@ -54,7 +54,8 @@ exports.deletePost = async(req,res,next) =>{
     const {id} = req.params;
     try {
         await Post.deleteOne({_id:id});
-        res.send("post deleted")
+        const updatedUser = await User.findByIdAndUpdate(req.user._id, {$pull:{posts:id}},{new:true}).populate("posts").populate({path:"likedpost", populate:{path:"createdby"}});
+        res.send({updatedUser})
     } catch (error) {
         next(error)
     }
