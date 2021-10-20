@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { getAllPostData, likepost, postDataInfo } from "../api/postapi";
 const {TextArea} = Input;
 
-function PostSection({user}){
+function PostSection({user, updateUser}){
     const [postData,setPostData]=useState({
         content:"",
         image: null
@@ -41,14 +41,18 @@ function PostSection({user}){
 
         postDataInfo(formData)
             .then(res => {
-                
+                updateUser(res.data.updatedUser)
                 getAllPostData().then(res => setAllPost(res.data.reverse()))
             });
     }
     const handleLike =(id) =>{
-        likepost(id).then(()=> {
-            getAllPostData().then(res => setAllPost(res.data.reverse()))
-        })
+        likepost(id)
+            .then((res)=> {
+                const { updatedUser } = res.data;
+                updateUser(updatedUser);
+                getAllPostData().then(res => setAllPost(res.data.reverse()))
+            })
+            
     }
     return(
         <div className="postform">

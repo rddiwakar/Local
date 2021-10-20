@@ -1,6 +1,7 @@
 const Post = require("../model/post");
 const User = require("../model/user");
 const mongoose = require("mongoose");
+const { populate } = require("../model/post");
 exports.createPost = async(req,res,next)=>{
     const {content,tags} = req.body
 
@@ -12,9 +13,9 @@ exports.createPost = async(req,res,next)=>{
             createdby: req.user._id
         });
 
-        await User.findByIdAndUpdate(req.user._id, {$push: {posts: post._id}});
+        const updatedUser = await User.findByIdAndUpdate(req.user._id, {$push: {posts: post._id}},{new: true}).populate("posts").populate({path:"likedpost", populate:{path:"createdby"}});
 
-        res.send(`post made${post}`);
+        res.send({post,updatedUser});
     } catch (error) {
         next(error)
     }

@@ -43,13 +43,13 @@ function Dashboard({updateUser,user}){
                     <Route path="/private/dashboard">
                         <div className="dashboard">
                             <ProfileSection updateUser={updateUser} user = {user} />
-                            <PostSection user = {user}/>
+                            <PostSection user = {user} updateUser={updateUser} />
                             <NewsSection topics={topics} />               
                         </div> 
                     </Route>
                     :<div>
                         <Route exact path="/private/dashboard">
-                            <PostSection user = {user} />
+                            <PostSection user = {user} updateUser={updateUser} />
                         </Route>
                         <Route path="/private/dashboard/profilesection">
                             <ProfileSection updateUser={updateUser} user = {user} />    
