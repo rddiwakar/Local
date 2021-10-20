@@ -2,7 +2,7 @@ const User = require("../model/user");
 const fetchNews = require("../utils/newsapi")
 exports.getPrivateData = async (req,res,next) =>{
     try {
-        const user = await User.findById(req.user._id).populate("posts");
+        const user = await User.findById(req.user._id).populate("posts").populate({path:"likedpost",populate:{path: "createdby"}});
         res.status(200).json({
             success:true,
             user,

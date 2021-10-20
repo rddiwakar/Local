@@ -3,7 +3,7 @@ import "../stylesheet/postform.css";
 import {Input} from "antd";
 //import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getAllPostData, postDataInfo } from "../api/postapi";
+import { getAllPostData, likepost, postDataInfo } from "../api/postapi";
 const {TextArea} = Input;
 
 function PostSection({user}){
@@ -45,6 +45,11 @@ function PostSection({user}){
                 getAllPostData().then(res => setAllPost(res.data.reverse()))
             });
     }
+    const handleLike =(id) =>{
+        likepost(id).then(()=> {
+            getAllPostData().then(res => setAllPost(res.data.reverse()))
+        })
+    }
     return(
         <div className="postform">
             <section className="postform-data">
@@ -77,7 +82,7 @@ function PostSection({user}){
                             {post.image && <img className="postimg" src={post.image} alt="postimg" />}
                         </div>
                         <div>
-                            <button>Like {post.likes.length}</button>
+                            <button onClick={()=>handleLike(post._id)}>Like {post.likes.length}</button>
                         </div>
                     </section>)
                 })

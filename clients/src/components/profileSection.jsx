@@ -35,7 +35,7 @@ function ProfileSection({updateUser, user}){
                 <section >
                         <ul>
                             <li ><Link to="/private/dashboard/mypost" className="profile-follow"> <MyPost /> <span>My Post</span> </Link></li>
-                            <li ><Link to= "/private/dashboard/mypost" className="profile-follow"><ThumbUpLineIcon /><span>Liked Post</span></Link></li>
+                            <li ><Link to= "/private/dashboard/likepost" className="profile-follow"><ThumbUpLineIcon /><span>Liked Post</span></Link></li>
                             <li ><Link to="/private/dashboard/setting" className="profile-follow"><Settings2LineIcon/> <span>Setting</span></Link> </li>
                             <li className="profile-follow" onClick={() => {
                                 localStorage.clear();

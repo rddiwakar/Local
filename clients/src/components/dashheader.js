@@ -14,7 +14,7 @@ function DashHeader({setTopics}){
             setTopics(res.data.articles)
     
         })
-     },[newsTopic,setTopics])
+     },[])
     
         const handleChange =(event) =>{
             setNewsTopic(event.target.value)

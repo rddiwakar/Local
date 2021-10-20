@@ -28,6 +28,10 @@ const userSchema = new mongoose.Schema ({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Post"
     }],
+    likedpost:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Post"
+    }]
 });
 userSchema.pre("save", function(next){
     if(!this.isModified("password")){

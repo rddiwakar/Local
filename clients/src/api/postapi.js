@@ -30,3 +30,11 @@ export const getAllPostData = () => axios({
         "authorization": "Bearer "+ localStorage.token
     }
 })
+export  const likepost = (id) => axios({
+    method: "patch",
+    url: "/api/private/post/like/" + id,
+    headers: {
+        "authorization": "Bearer "+ localStorage.token
+    }
+})
+

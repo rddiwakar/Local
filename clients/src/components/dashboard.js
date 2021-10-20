@@ -11,6 +11,7 @@ import { Switch, Route,Link} from "react-router-dom";
 import ProfileSetting from "./profilesetting";
 import MyPost from "./Mypost";
 import {userInfo} from "../api/postapi";
+import LikePost from "./likepost";
 
 function Dashboard({updateUser,user}){
     const [topics, setTopics]=useState([])
@@ -34,6 +35,9 @@ function Dashboard({updateUser,user}){
                     <Route path ="/private/dashboard/setting" component={ ProfileSetting } />
                     <Route path ="/private/dashboard/mypost">
                         <MyPost user={user} />    
+                    </Route> 
+                    <Route path ="/private/dashboard/likepost">
+                        <LikePost user={user} />    
                     </Route> 
                     {screenSize > 760 ?
                     <Route path="/private/dashboard">

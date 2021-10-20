@@ -28,8 +28,10 @@ exports.likePost = async(req,res,next) =>{
         
         if(!alreadyLiked) {
             await Post.findByIdAndUpdate(post._id, {$push: {likes: req.user._id}});
+            await User.findByIdAndUpdate(req.user._id, {$push: {likedpost: post._id}});
         } else {
             await Post.findByIdAndUpdate(post._id, {$pull: {likes: req.user._id}});
+            await User.findByIdAndUpdate(req.user._id, {$pull: {likedpost: post._id}});
         }
 
         res.json({post});
