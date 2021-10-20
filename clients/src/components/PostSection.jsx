@@ -14,9 +14,9 @@ function PostSection({user}){
     const [allPost, setAllPost] = useState([])
     
     useEffect(()=>{
-        getAllPostData().then(res => setAllPost(res.data))
+        getAllPostData().then(res => setAllPost(res.data.reverse()))
     },[])
-    console.log(allPost)
+
     const handleFileChange = (event) => {
        
         setPostData({
@@ -40,7 +40,10 @@ function PostSection({user}){
         formData.append("image", postData.image);
 
         postDataInfo(formData)
-            .then(res => console.log(res));
+            .then(res => {
+                
+                getAllPostData().then(res => setAllPost(res.data.reverse()))
+            });
     }
     return(
         <div className="postform">

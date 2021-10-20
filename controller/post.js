@@ -3,11 +3,11 @@ const User = require("../model/user");
 const mongoose = require("mongoose");
 exports.createPost = async(req,res,next)=>{
     const {content,tags} = req.body
-    const { path } = req.file;
+
     try { 
         const post = await Post.create({
             content,
-            image: `http://localhost:5000/${path}`,
+            image: req.file ? `http://localhost:5000/${req.file.path}` : "" ,
             tags,
             createdby: req.user._id
         });
