@@ -15,6 +15,10 @@ const userSchema = new mongoose.Schema ({
             "Please provide a valid email",
           ],
        },
+    bio:{
+        type:String,
+        maxlength:100
+    },   
     password:{
         type:String,
         minlength: 6,

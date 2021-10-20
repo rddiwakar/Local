@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 
 
 function DashHeader({setTopics}){
-     const [newsTopic,setNewsTopic]=useState("news")
+     const [newsTopic,setNewsTopic]=useState("")
      useEffect(()=>{
         newsApi(newsTopic).then((res)=> {
             setTopics(res.data.articles)

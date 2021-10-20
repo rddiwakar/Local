@@ -1,5 +1,5 @@
 import "../stylesheet/postform.css";
-//import Gallery from "remixicon-react/ImageLineIcon";
+import Gallery from "remixicon-react/ImageLineIcon";
 import {Input} from "antd";
 //import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -43,6 +43,10 @@ function PostSection({user, updateUser}){
             .then(res => {
                 updateUser(res.data.updatedUser)
                 getAllPostData().then(res => setAllPost(res.data.reverse()))
+                setPostData({
+                    content:"",
+                    image: null
+                })
             });
     }
     const handleLike =(id) =>{
@@ -63,8 +67,8 @@ function PostSection({user, updateUser}){
                         <TextArea onChange={handleChange} value={postData.content} placeholder="Share your view" autoSize />
                         <hr />
                         <div>
-                            {/* <p> <Gallery /> </p> */}
-                            <input type="file" onChange={handleFileChange} />
+                            <input type="file" id="file" onChange={handleFileChange} hidden />
+                            <label htmlFor="file"> <Gallery /> </label>
                             <button type="submit">submit</button>
                         </div>
                     </form>
