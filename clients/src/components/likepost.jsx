@@ -3,7 +3,7 @@ import { likepost } from "../api/postapi";
 
 
 import "../stylesheet/postform.css";
-function LikePost({ user }){
+function LikePost({ user, updateUser }){
     const [currentUser, setCurrentUser] = useState(user);
 
     useEffect(() => {
@@ -11,6 +11,10 @@ function LikePost({ user }){
     }, [user]);
     const handleLike = (id) => {
         likepost(id)
+            .then(res => {
+                const { updatedUser } = res.data;
+                updateUser(updatedUser);
+            });
     }
 
     return(

@@ -24,17 +24,28 @@ exports.likePost = async(req,res,next) =>{
     const {id}= req.params;
     try {
         const post = await Post.findById(id);
+        let updatedUser = {};
         const alreadyLiked = post.likes.includes(req.user._id);
         
         if(!alreadyLiked) {
             await Post.findByIdAndUpdate(post._id, {$push: {likes: req.user._id}});
-            await User.findByIdAndUpdate(req.user._id, {$push: {likedpost: post._id}});
+            updatedUser = await User.findByIdAndUpdate(req.user._id, {$push: {likedpost: post._id}}, {new: true}).populate("posts").populate({
+                path: "likedpost",
+                populate: {
+                    path: "createdby"
+                }
+            });
         } else {
             await Post.findByIdAndUpdate(post._id, {$pull: {likes: req.user._id}});
-            await User.findByIdAndUpdate(req.user._id, {$pull: {likedpost: post._id}});
+            updatedUser = await User.findByIdAndUpdate(req.user._id, {$pull: {likedpost: post._id}}, {new: true}).populate("posts").populate({
+                path: "likedpost",
+                populate: {
+                    path: "createdby"
+                }
+            });;
         }
 
-        res.json({post});
+        res.json({post, updatedUser});
     } catch (error) {
         next(error)
     }

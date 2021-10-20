@@ -24,7 +24,7 @@ function Dashboard({updateUser,user}){
         }
 
         window.addEventListener("resize", updateScreenSize);
-    }, [token,updateUser]);
+    }, [token]);
 
     return(
         <div>
@@ -34,10 +34,10 @@ function Dashboard({updateUser,user}){
                     <Route path="/private/dashboard/newssection" component={NewsSection} /> */}
                     <Route path ="/private/dashboard/setting" component={ ProfileSetting } />
                     <Route path ="/private/dashboard/mypost">
-                        <MyPost user={user} />    
+                        <MyPost user={user} updateUser={updateUser} />    
                     </Route> 
                     <Route path ="/private/dashboard/likepost">
-                        <LikePost user={user} />    
+                        <LikePost user={user} updateUser={updateUser} />    
                     </Route> 
                     {screenSize > 760 ?
                     <Route path="/private/dashboard">

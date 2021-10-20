@@ -78,6 +78,7 @@ function PostSection({user}){
                         <div>
                             <p>{post.content}</p>
                         </div>
+                        {console.log("this is console")}
                         <div>
                             {post.image && <img className="postimg" src={post.image} alt="postimg" />}
                         </div>

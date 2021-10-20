@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import {likepost} from "../api/postapi"
 
 import "../stylesheet/postform.css";
-function MyPost({ user }){
+function MyPost({ user, updateUser }){
     const [currentUser, setCurrentUser] = useState(user);
 
     useEffect(() => {
@@ -10,6 +10,10 @@ function MyPost({ user }){
     }, [user]);
     const handleLike = (id) => {
         likepost(id)
+            .then(res => {
+                const { updatedUser } = res.data;
+                updateUser(updatedUser);
+            })
     }
 
     return(
