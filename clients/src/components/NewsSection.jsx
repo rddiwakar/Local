@@ -13,7 +13,7 @@ function NewsSection({topics}){
             <section>
                 <ul>
                     {topics.map((topic)=>{
-                        return (<li>
+                        return (<li key={topic.title}>
                                     <div>
                                         <a href={topic.url} target="_blank" rel="noreferrer">
                                             <h4>{topic.title}</h4>

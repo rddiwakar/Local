@@ -21,7 +21,7 @@ function LikePost({ user, updateUser }){
         <div className="myPost">
             {
                 currentUser.posts && currentUser.likedpost.map(post => {
-                    return (<section className="postform-post">
+                    return (<section className="postform-post" key ={post._id}>
                         <div className="form-post-header">
                             <img className="logo-img" src ={post.createdby.avatar} alt="profile"  />
                             <h3>{post.createdby.username}</h3>

@@ -26,7 +26,7 @@ function MyPost({ user, updateUser }){
         <div className="myPost">
             {
                 currentUser.posts && currentUser.posts.map(post => {
-                    return (<section className="postform-post">
+                    return (<section className="postform-post" key ={post._id}>
                         <div className="form-post-header">
                             <img className="logo-img" src ={currentUser.avatar} alt="profile"  />
                             <h3>{currentUser.username}</h3>

@@ -50,7 +50,7 @@ userSchema.methods.matchPassword =  function(password){
 }
 
 userSchema.methods.getSignedToken = function(){
-    return JWT.sign({id:this._id},process.env.JWT_SECRET, {expiresIn: process.env.JWT_EXPIRE})
+    return JWT.sign({id:this._id},process.env.JWT_SECRET)
 }
 
 const User = mongoose.model("User", userSchema);

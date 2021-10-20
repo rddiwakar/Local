@@ -77,7 +77,7 @@ function PostSection({user, updateUser}){
             <hr />
             {
                 allPost.map(post => {
-                    return (<section className="postform-post">
+                    return (<section className="postform-post" key ={post._id} >
                         <div className="form-post-header">
                             <img className="logo-img" src ={post.createdby.avatar} alt="profile"  />
                             <h3>{post.createdby.username}</h3>
