@@ -17,7 +17,8 @@ const userSchema = new mongoose.Schema ({
        },
     bio:{
         type:String,
-        maxlength:100
+        maxlength:100,
+        default: "write your bio?"
     },   
     password:{
         type:String,

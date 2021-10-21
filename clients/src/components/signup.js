@@ -61,9 +61,9 @@ function SignUp({updateUser}){
                 <p>Share your thoughts and remain updated with the latest news</p>
             </div>
             <form className="auth-form" onSubmit={handleSubmit}>
-                <Input onChange ={handleChange} value={signUpDetail.username} type="text" name ="username" placeholder="Username"/>
-                <Input onChange ={handleChange} value={signUpDetail.email} type="email" name = "email" placeholder="Please enter your email" />
-                <Input onChange ={handleChange} value={signUpDetail.password} type="password" name = "password" placeholder="Please enter your password" />
+                <Input onChange ={handleChange} value={signUpDetail.username} type="text" name ="username" placeholder="Username" title="UserName"/>
+                <Input onChange ={handleChange} value={signUpDetail.email} type="email" name = "email" placeholder="Please enter your email" title="Email" />
+                <Input onChange ={handleChange} value={signUpDetail.password} type="password" name = "password" placeholder="Please enter your password" title="Password" />
                 <Input onSubmit ={handleSubmit} type="submit" value="submit"/>
                 <div>
                     <Link to="/public/login">Login with existing account</Link>

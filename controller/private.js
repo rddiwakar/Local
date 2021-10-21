@@ -35,3 +35,36 @@ exports.getNews = async (req,res,next) =>{
     next(error);
   }
 }
+exports.changeUsername = async(req,res,next) =>{
+    const username = req.body.username
+    try {
+        const user = await User.findOne({email:req.user.email});
+        user.username = username;
+        user.save();
+        res.send("Username change successfully" + user)
+    } catch (error) {
+        next(error)
+    }
+}
+exports.changeEmail = async(req,res,next) =>{
+    const {newemail,oldemail} = req.body;
+    try {
+        const user = await User.findOne({email:oldemail});
+        user.email = newemail;
+        user.save();
+        res.send({message:"Email change successfully" , user})
+    } catch (error) {
+        next(error)
+    }
+}
+exports.createBio = async(req,res,next) =>{
+    const {bio} = req.body;
+    try {
+        const user = await User.findOne({email:req.user.email})
+        user.bio = bio;
+        user.save();
+        res.send({message:"bio created", user})
+    } catch (error) {
+        next(error)
+    }
+}
