@@ -32,7 +32,9 @@ function Dashboard({updateUser,user}){
                 <Switch>
                     {/* <Route path="/private/dashboard/profilesection" component={ProfileSection} />           
                     <Route path="/private/dashboard/newssection" component={NewsSection} /> */}
-                    <Route path ="/private/dashboard/setting" component={ ProfileSetting } />
+                    <Route path ="/private/dashboard/setting" >
+                        < ProfileSetting updateUser={updateUser} />
+                     </Route>
                     <Route path ="/private/dashboard/mypost">
                         <MyPost user={user} updateUser={updateUser} />    
                     </Route> 

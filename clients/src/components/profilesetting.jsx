@@ -2,11 +2,12 @@ import TextArea from "antd/lib/input/TextArea"
 import  Input  from "./input";
 import "../stylesheet/form.css"
 import { useState } from "react";
-import { changeUserBio } from "../api/setting";
-function ProfileSetting(){
+import { changeUserBio , changeUserEmail, changeUserName, changeUserPassword} from "../api/setting";
+function ProfileSetting({updateUser}){
     const [settingDetails,setSettingDetails]= useState({
         username:"",
-        password:"",
+        oldpassword:"",
+        newpassword:"",
         bio:"",
         oldemail:"",
         newemail:""
@@ -18,11 +19,56 @@ function ProfileSetting(){
             [name]: value
         })
     }
-    const changebio = (event) =>{
+    const changeusername = (event) =>{
         event.preventDefault();
-        const bio = settingDetails.bio
+        const username = {username:settingDetails.username}
+        changeUserName(username)
+            .then(res => {
+                console.log(res)
+                updateUser(res.data.user)
+            })
+            .catch(err => console.log(err))
+        setSettingDetails({
+            username:""
+        })    
+    }
+    const changeuserbio = (event) =>{
+        event.preventDefault();
+        const bio = {bio:settingDetails.bio}
         changeUserBio(bio)
-            .then(res => console.log(res))
+            .then(res => {
+                console.log(res)
+                updateUser(res.data.user)
+            })
+            .catch(err => console.log(err))
+        setSettingDetails({
+            bio:""
+        })    
+    }
+    const changeuseremail = (event) =>{
+        event.preventDefault();
+        const email = {oldemail:settingDetails.oldemail,newemail:settingDetails.newemail}
+        changeUserEmail(email)
+            .then(res => {
+                console.log(res)
+                updateUser(res.data.user)
+            })
+            .catch(err => console.log(err))
+
+        setSettingDetails({
+            oldemail:"",
+            newemail:""
+        })
+    }
+    const changeuserpassword = (event) =>{
+        event.preventDefault();
+        const password = {oldpassword:settingDetails.oldpassword, newpassword:settingDetails.newpassword};
+        changeUserPassword(password)
+            .then(res => {
+                console.log(res)
+                updateUser(res.data.user)
+            })
+            .catch(error =>console.log(error))
     }
     return(
         <>
@@ -30,23 +76,24 @@ function ProfileSetting(){
             <form className="auth-form profilesetting" >
                 <div>
                     <Input value={settingDetails.username} onChange={handleChange} type="text" title ="Name" placeholder="change user name" name="username" />
-                    <button>change</button>
+                    <button onClick={changeusername}>change</button>
                 </div>
                 <div>
                     <Input value={settingDetails.oldemail} onChange={handleChange} type="text" title ="OldEmail" placeholder="OldPassword" name="oldemail" />
                     <Input value={settingDetails.newemail} onChange={handleChange} type="text" title ="NewEmail" placeholder="NewPassword" name="newemail" />
-                    <button>change</button> 
+                    <button onClick={changeuseremail}>change</button> 
                 </div>
                 <div>
                     <br />
                     <TextArea value={settingDetails.bio} onChange={handleChange} name="bio" placeholder="write your bio.." autoSize/>
                     <br/>
-                    <button onClick={changebio} >change</button>
+                    <button onClick={changeuserbio}>change</button>
                 </div>
                 <div>
-                    <Input value={settingDetails.password} onChange={handleChange} type="password" title = "Password" placeholder="change your password" name="password" />
+                    <Input value={settingDetails.oldpassword} onChange={handleChange} type="password" title = "OldPassword" placeholder="Old Password" name="oldpassword" />
+                    <Input value={settingDetails.newpassword} onChange={handleChange} type="password" title = "NewPassword" placeholder="New Password" name="newpassword" />
                    
-                    <button>change</button>
+                    <button onClick={changeuserpassword} >change</button>
                 </div>
             </form>
         </>

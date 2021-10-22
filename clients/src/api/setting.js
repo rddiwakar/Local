@@ -26,3 +26,21 @@ export  const changeUserBio = (bio) => axios({
         "authorization": "Bearer "+ localStorage.token
     }
 })
+export  const changeUserName = (username) => axios({
+    method: "patch",
+    url: "/api/private/setting/username",
+    data:username,
+    headers: {
+        "content-type": "application/json",
+        "authorization": "Bearer "+ localStorage.token
+    }
+})
+export  const changeUserPassword = (password) => axios({
+    method: "patch",
+    url: "/api/private/setting/password",
+    data:password,
+    headers: {
+        "content-type": "application/json",
+        "authorization": "Bearer "+ localStorage.token
+    }
+})

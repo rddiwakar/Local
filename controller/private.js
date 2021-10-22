@@ -41,7 +41,7 @@ exports.changeUsername = async(req,res,next) =>{
         const user = await User.findOne({email:req.user.email});
         user.username = username;
         user.save();
-        res.send("Username change successfully" + user)
+        res.send({message:"Username change successfully", user})
     } catch (error) {
         next(error)
     }
@@ -64,6 +64,25 @@ exports.createBio = async(req,res,next) =>{
         user.bio = bio;
         user.save();
         res.send({message:"bio created", user})
+    } catch (error) {
+        next(error)
+    }
+}
+exports.changePassword = async(req,res,next)=>{
+    const {oldpassword,newpassword} = req.body;
+    console.log("change password");
+
+    try{
+        const user = await User.findOne({email:req.user.email});
+        const validate = user.matchPassword(oldpassword);
+        console.log(validate);
+        if(validate){
+            user.password = newpassword ;
+            res.send({message:"Password Change Successfully", user})
+            user.save();
+        }else{
+            res.send({message:"OldPassword Error"})
+        }
     } catch (error) {
         next(error)
     }

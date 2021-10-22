@@ -18,7 +18,7 @@ function ProfileSection({updateUser, user}){
                 <figcaption>
                     <h3>{user.username ||"user"}</h3>
                 </figcaption>
-                <p>Learning full stack development and building visionmad.com</p>
+                <p>{user.bio}</p>
                 <br />
                 <hr />
                 <div>
