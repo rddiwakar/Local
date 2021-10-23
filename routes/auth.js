@@ -7,4 +7,4 @@ router.route("/login").post(login);
 router.route("/forgotpassword").post(forgotPassword);
 router.route("/resetpassword/:id").patch(resetPassword);
 router.route("/user/deleted/:id").delete(deleteUser);
-module.exports = router;
+module.exports = router; 

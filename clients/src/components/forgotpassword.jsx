@@ -2,10 +2,22 @@ import Input from "./input";
 import "../stylesheet/forgotpassword.css"
 import React, { useState } from "react";
 import {ForgetPassword} from "../api/auth"
+import Swal from 'sweetalert2';
 
 
 function ForgotPassword(){
     const [email,setEmail] = useState("");
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    })
 
     const handleChange = (event) => {
         const {value} = event.target
@@ -15,7 +27,13 @@ function ForgotPassword(){
         event.preventDefault();
         
         ForgetPassword({email})
-            .then(res => console.log(res))
+            .then(res => {
+                console.log(res)
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Email Send Successfully'
+                })
+            })
             .catch(err => console.log(err))
 
     }

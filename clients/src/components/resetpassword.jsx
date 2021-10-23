@@ -8,7 +8,6 @@ import {Redirect, useParams, useHistory} from "react-router-dom";
 function ResetPassword({updateUser}){
     const {id} = useParams()
     const history = useHistory();
-    console.log(id)
     const [password,setPassword] = useState("");
 
     const handleChange = (event) => {

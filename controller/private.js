@@ -75,7 +75,6 @@ exports.changePassword = async(req,res,next)=>{
     try{
         const user = await User.findOne({email:req.user.email});
         const validate = user.matchPassword(oldpassword);
-        console.log(validate);
         if(validate){
             user.password = newpassword ;
             res.send({message:"Password Change Successfully", user})

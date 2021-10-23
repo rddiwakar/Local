@@ -67,7 +67,7 @@ exports.forgotPassword = async(req,res,next) =>{
                 `,
             });
 
-            res.send("Email Sent");
+            res.send("Email Sent successfully");
         } catch (error) {
             console.log(error)
         }
@@ -77,16 +77,12 @@ exports.forgotPassword = async(req,res,next) =>{
 }
 exports.resetPassword = async (req,res,next) =>{
     try {
-        console.log(req.params)
-        const {newpassword} = req.body;
-        
-        const id = req.params.id
-        console.log(id)
-
-        const updatedUser = await User.findByIdAndUpdate(id,{password:newpassword}, {new: true});
-        await updatedUser.save();
-         res.send(updatedUser)
-
+        const {password} = req.body;
+        const id = req.params.id;
+        const user = await User.findById(id);
+        user.password =password;
+        user.save();
+        res.send(user)
 
     } catch (error) {
         next(error);
