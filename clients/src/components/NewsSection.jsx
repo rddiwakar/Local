@@ -1,15 +1,19 @@
 
 
 import "../stylesheet/newssection.css";
+import DashHeader from "./dashheader";
 
-function NewsSection({topics}){
+function NewsSection({topics, setTopics}){
        
     return(
         <div className="newsbody">
-            <section className="newsbody-header">
-                <h1>Local Morning News</h1>  
-            </section>
-            <hr />
+            {window.innerWidth < 760 ? <DashHeader setTopics={setTopics} />:<>
+                <section className="newsbody-header">
+                    <h1>Local Morning News</h1>  
+                </section>
+                <hr />
+            </>}
+            
             <section>
                 <ul>
                     {topics.map((topic)=>{

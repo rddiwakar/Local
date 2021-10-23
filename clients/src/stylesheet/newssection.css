@@ -21,6 +21,7 @@
 @media screen and (max-width: 760px) {
     .newsbody{
         width:98%;
+        font-family: 2rem;
     }
   }
 

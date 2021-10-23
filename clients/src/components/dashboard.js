@@ -28,13 +28,13 @@ function Dashboard({updateUser,user}){
 
     return(
         <div>
-           <DashHeader setTopics={setTopics} />
+           {/* <DashHeader setTopics={setTopics} /> */}
                 <Switch>
                     <Route path="/private/dashboard/profilesection">
                         <ProfileSection updateUser={updateUser} user = {user} />    
                     </Route> 
                     <Route path="/private/dashboard/newssection" >
-                        <NewsSection topics={topics} />
+                        <NewsSection topics={topics} setTopics={setTopics} />
                     </Route>
                     <Route path ="/private/dashboard/setting" >
                         < ProfileSetting updateUser={updateUser} />
@@ -47,6 +47,7 @@ function Dashboard({updateUser,user}){
                     </Route> 
                     {screenSize > 760 ?
                     <Route exact path="/private/dashboard">
+                        <DashHeader setTopics={setTopics} />
                         <div className="dashboard">
                             <ProfileSection updateUser={updateUser} user = {user} />
                             <PostSection user = {user} updateUser={updateUser} />

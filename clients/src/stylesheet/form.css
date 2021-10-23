@@ -30,6 +30,9 @@
     border-radius: .5rem;
 }
 @media all and (max-width:770px){
+    .profilesetting{
+        width:100%
+    }
     .form-data{
         flex-direction: column;
     }
