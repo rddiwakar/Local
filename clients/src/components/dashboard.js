@@ -30,8 +30,12 @@ function Dashboard({updateUser,user}){
         <div>
            <DashHeader setTopics={setTopics} />
                 <Switch>
-                    {/* <Route path="/private/dashboard/profilesection" component={ProfileSection} />           
-                    <Route path="/private/dashboard/newssection" component={NewsSection} /> */}
+                    <Route path="/private/dashboard/profilesection">
+                        <ProfileSection updateUser={updateUser} user = {user} />    
+                    </Route> 
+                    <Route path="/private/dashboard/newssection" >
+                        <NewsSection topics={topics} />
+                    </Route>
                     <Route path ="/private/dashboard/setting" >
                         < ProfileSetting updateUser={updateUser} />
                      </Route>
@@ -42,7 +46,7 @@ function Dashboard({updateUser,user}){
                         <LikePost user={user} updateUser={updateUser} />    
                     </Route> 
                     {screenSize > 760 ?
-                    <Route path="/private/dashboard">
+                    <Route exact path="/private/dashboard">
                         <div className="dashboard">
                             <ProfileSection updateUser={updateUser} user = {user} />
                             <PostSection user = {user} updateUser={updateUser} />
@@ -53,10 +57,8 @@ function Dashboard({updateUser,user}){
                         <Route exact path="/private/dashboard">
                             <PostSection user = {user} updateUser={updateUser} />
                         </Route>
-                        <Route path="/private/dashboard/profilesection">
-                            <ProfileSection updateUser={updateUser} user = {user} />    
-                        </Route>           
-                        <Route path="/private/dashboard/newssection" component={NewsSection} />
+                                 
+                        
                     </div>}           
                 </Switch> 
                 {screenSize > 760 ?

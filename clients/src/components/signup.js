@@ -22,19 +22,19 @@ function SignUp({updateUser}){
         }
         const handleSubmit = (event) =>{
             event.preventDefault();
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
             signIn(signUpDetail)
                 .then((res) => {
-                    const Toast = Swal.mixin({
-                        toast: true,
-                        position: 'top-end',
-                        showConfirmButton: false,
-                        timer: 3000,
-                        timerProgressBar: true,
-                        didOpen: (toast) => {
-                          toast.addEventListener('mouseenter', Swal.stopTimer)
-                          toast.addEventListener('mouseleave', Swal.resumeTimer)
-                        }
-                    })
                     if(res.data.success) {
                         console.log(res.data.user)
                         localStorage.setItem("token", res.data.token);
@@ -52,7 +52,12 @@ function SignUp({updateUser}){
                         })
                     }
                 })
-                .catch((error)=>console.log(error))   
+                .catch((error)=> {
+                    Toast.fire({
+                        icon: 'error',
+                        title: error
+                    })
+                })   
         }
     return (
         <div className="form-data">

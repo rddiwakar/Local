@@ -1,7 +1,7 @@
 
 import SearchIcon from "remixicon-react/Search2LineIcon";
 import "../stylesheet/dashHeader.css";
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 import { newsApi } from "../api/postapi";
 import { useEffect, useState } from "react";
 
@@ -22,8 +22,7 @@ function DashHeader({setTopics}){
         const handleSubmit =(event) =>{
             event.preventDefault();
             newsApi(newsTopic).then((res)=> {
-                setTopics(res.data.articles)
-               
+                setTopics(res.data.articles);
             })
         }
     return(

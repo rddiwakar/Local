@@ -1,6 +1,7 @@
 import TextArea from "antd/lib/input/TextArea"
 import  Input  from "./input";
 import "../stylesheet/form.css"
+import Swal from 'sweetalert2';
 import { useState } from "react";
 import { changeUserBio , changeUserEmail, changeUserName, changeUserPassword} from "../api/setting";
 function ProfileSetting({updateUser}){
@@ -11,6 +12,17 @@ function ProfileSetting({updateUser}){
         bio:"",
         oldemail:"",
         newemail:""
+    })
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
     })
     const handleChange = (event) =>{
         const {name , value} = event.target
@@ -24,8 +36,11 @@ function ProfileSetting({updateUser}){
         const username = {username:settingDetails.username}
         changeUserName(username)
             .then(res => {
-                console.log(res)
-                updateUser(res.data.user)
+                updateUser(res.data.user);
+                Toast.fire({
+                    icon: 'success',
+                    title: `Username change successfully`
+                })
             })
             .catch(err => console.log(err))
         setSettingDetails({
@@ -37,8 +52,11 @@ function ProfileSetting({updateUser}){
         const bio = {bio:settingDetails.bio}
         changeUserBio(bio)
             .then(res => {
-                console.log(res)
-                updateUser(res.data.user)
+                updateUser(res.data.user);
+                Toast.fire({
+                    icon: 'success',
+                    title: `New Bio Created`
+                })
             })
             .catch(err => console.log(err))
         setSettingDetails({
@@ -50,10 +68,19 @@ function ProfileSetting({updateUser}){
         const email = {oldemail:settingDetails.oldemail,newemail:settingDetails.newemail}
         changeUserEmail(email)
             .then(res => {
-                console.log(res)
                 updateUser(res.data.user)
+                Toast.fire({
+                    icon: 'success',
+                    title: `Email Change Successfully`
+                })
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                console.log(err)
+                Toast.fire({
+                    icon: 'error',
+                    title: `Please fill correctly`
+                })
+            })
 
         setSettingDetails({
             oldemail:"",
@@ -65,10 +92,19 @@ function ProfileSetting({updateUser}){
         const password = {oldpassword:settingDetails.oldpassword, newpassword:settingDetails.newpassword};
         changeUserPassword(password)
             .then(res => {
-                console.log(res)
-                updateUser(res.data.user)
+                updateUser(res.data.user);
+                Toast.fire({
+                    icon: 'success',
+                    title: `Password change successfully`
+                })
             })
-            .catch(error =>console.log(error))
+            .catch(error =>{
+                console.log(error)
+                Toast.fire({
+                    icon: 'error',
+                    title: `Old password Error`
+                })
+            })
     }
     return(
         <>

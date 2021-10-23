@@ -1,17 +1,30 @@
 import "../stylesheet/postform.css";
 import Gallery from "remixicon-react/ImageLineIcon";
 import {Input} from "antd";
-//import { Link } from "react-router-dom";
+import Swal from 'sweetalert2';
 import { useEffect, useState } from "react";
 import { getAllPostData, likepost, postDataInfo } from "../api/postapi";
 const {TextArea} = Input;
+
 
 function PostSection({user, updateUser}){
     const [postData,setPostData]=useState({
         content:"",
         image: null
+    });
+    
+    const [allPost, setAllPost] = useState([]);
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
     })
-    const [allPost, setAllPost] = useState([])
     
     useEffect(()=>{
         getAllPostData().then(res => setAllPost(res.data.reverse()))
@@ -34,7 +47,6 @@ function PostSection({user, updateUser}){
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
         const formData = new FormData();
         formData.append("content", postData.content);
         formData.append("image", postData.image);
@@ -43,18 +55,35 @@ function PostSection({user, updateUser}){
             .then(res => {
                 updateUser(res.data.updatedUser)
                 getAllPostData().then(res => setAllPost(res.data.reverse()))
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Post Created Successfully'
+                })
                 setPostData({
                     content:"",
                     image: null
                 })
             });
     }
-    const handleLike =(id) =>{
+    const handleLike =(post) =>{
+        let id = post._id
+        const previousPostLike = user.likedpost.length;
+        
         likepost(id)
             .then((res)=> {
                 const { updatedUser } = res.data;
                 updateUser(updatedUser);
                 getAllPostData().then(res => setAllPost(res.data.reverse()))
+                let currentPostLike =updatedUser.likedpost.length
+                previousPostLike > currentPostLike ?
+                    Toast.fire({
+                        icon: 'error',
+                        title: `You dislike ${user.likedpost[user.likedpost.length-1].createdby.username} post`
+                    }):Toast.fire({
+                        icon: 'success',
+                        title: `You like ${updatedUser.likedpost[updatedUser.likedpost.length-1].createdby.username} post`
+                    })
+               
             })
             
     }
@@ -77,23 +106,25 @@ function PostSection({user, updateUser}){
             <hr />
             {
                 allPost.map(post => {
-                    return (<section className="postform-post" key ={post._id} >
-                        <div className="form-post-header">
-                            <img className="logo-img" src ={post.createdby.avatar} alt="profile"  />
-                            <h3>{post.createdby.username}</h3>
-                        </div>
-                        <hr />
-                        <div>
-                            <p>{post.content}</p>
-                        </div>
-                        {console.log("this is console")}
-                        <div>
-                            {post.image && <img className="postimg" src={post.image} alt="postimg" />}
-                        </div>
-                        <div>
-                            <button onClick={()=>handleLike(post._id)}>Like {post.likes.length}</button>
-                        </div>
-                    </section>)
+                    return (
+                        <section className="postform-post" key ={post._id} >
+                            
+                            <div className="form-post-header">
+                                <img className="logo-img" src ={post.createdby.avatar} alt="profile"  />
+                                <h3>{post.createdby.username}</h3>
+                            </div>
+                            <hr />
+                            <div>
+                                <p>{post.content}</p>
+                            </div>
+                            <div>
+                                {post.image && <img className="postimg" src={post.image} alt="postimg" />}
+                            </div>
+                            <div>
+                                <button onClick={()=>handleLike(post)}>Like {post.likes.length}</button>
+                            </div>
+                        </section>
+                    )
                 })
             }           
         </div>

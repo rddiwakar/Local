@@ -12,7 +12,7 @@ exports.register = async(req,res,next) =>{
             });
             sendToken(user,201,res)
         }else{
-            res.send({success:false})
+            res.send({success:false, message:"Email already exist"})
         }
        
     

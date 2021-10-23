@@ -18,21 +18,21 @@ function Login({updateUser}){
     }
     const handleSubmit = (event) =>{
         event.preventDefault();
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
         logIn(loginDetail)
             .then((res)=>{
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                      toast.addEventListener('mouseenter', Swal.stopTimer)
-                      toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
-                })
                 if(res.data.success) {
-                    console.log(res.data.user)
+                    
                     localStorage.setItem("token", res.data.token);
                     Toast.fire({
                         icon: 'success',
@@ -40,9 +40,15 @@ function Login({updateUser}){
                     })
                     updateUser(res.data.user);
                     history.push("/")
-                } 
+                }
             })
-            .catch((error)=>console.log(error))
+            .catch((error)=>{
+                console.log(error)
+                Toast.fire({
+                    icon: 'error',
+                    title:"Something Went Wrong Please Fill Correctly"
+                })
+            })
 
     }
     return (
