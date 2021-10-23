@@ -40,7 +40,7 @@ function ProfileSection({updateUser, user}){
                             <li ><Link to="/private/dashboard/mypost" className="profile-follow"> <MyPost /> <span>My Post</span> </Link></li>
                             <li ><Link to= "/private/dashboard/likepost" className="profile-follow"><ThumbUpLineIcon /><span>Liked Post</span></Link></li>
                             <li ><Link to="/private/dashboard/setting" className="profile-follow"><Settings2LineIcon/> <span>Setting</span></Link> </li>
-                            <li className="profile-follow" onClick={() => {
+                            <li className="profile-follow logout" onClick={() => {
                                 localStorage.clear();
                                 updateUser(null);
                                 history.push("/");

@@ -9,7 +9,7 @@ function NewsSection({topics, setTopics}){
         <div className="newsbody">
             {window.innerWidth < 760 ? <DashHeader setTopics={setTopics} />:<>
                 <section className="newsbody-header">
-                    <h1>Local Morning News</h1>  
+                    <h1>News</h1>  
                 </section>
                 <hr />
             </>}

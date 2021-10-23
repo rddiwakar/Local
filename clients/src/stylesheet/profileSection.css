@@ -39,6 +39,10 @@
     width:70%;
     margin:auto;
 }
+.logout {
+    color:blue;
+    cursor: pointer;
+}
 @media screen and (max-width: 760px) {
     .navigation{
         width:90%;

@@ -25,7 +25,7 @@ function DashHeader({setTopics}){
         }
     return(
         <div className="dash_header">
-            <h3><Link to="/private/dashboard">Local Morning</Link></h3>
+            <h3><Link to="/private/dashboard"> Local </Link></h3>
                 <div className="searchbar">
                     <input value={newsTopic} onChange={handleChange} placeholder="search latest news here"/>
                     <p onClick={handleSubmit}><SearchIcon size="2rem"/></p>

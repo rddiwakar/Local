@@ -12,6 +12,10 @@ body{
 a{
     text-decoration: none;
     color:black;
+    cursor: pointer;
+}
+button{
+    cursor: pointer;
 }
 @media all and (max-width:770px){
     html{
