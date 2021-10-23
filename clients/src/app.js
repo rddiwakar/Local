@@ -2,9 +2,11 @@ import React, { useState} from "react";
 import PublicRouting from "./components/publicRouting";
 import Dashboard from "./components/dashboard";
 import {Gtoken} from "./components/g-token";
+import ForgotPassword from "./components/forgotpassword";
 
 
 import {Redirect, Route, Switch} from "react-router-dom";
+import ResetPassword from "./components/resetpassword";
 
 function App(){
     const [user, setUser] = useState({});
@@ -22,9 +24,16 @@ function App(){
                 <Route path="/public">
                     <PublicRouting updateUser={updateUser} />
                 </Route>
+                <Route path="/forgetPassword">
+                    <ForgotPassword />
+                </Route>
+                <Route path="/resetpassword/:id">
+                    <ResetPassword updateUser={updateUser} />
+                </Route>
                 <Route path="/">
                     <Redirect to="/public" />
                 </Route>
+                
             </Switch>
         );
     }

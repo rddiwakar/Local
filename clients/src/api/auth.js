@@ -21,3 +21,21 @@ export  const logIn = (logInDetails)=> axios({
         "authorization": ""
     }
 });
+export const ForgetPassword =(email)=> axios({
+    method: "post",
+    url: "/api/auth/forgotpassword",
+    data: email,
+    headers: {
+        "content-type": "application/json",
+        "authorization": ""
+    }
+})
+export const PatchResetPassword =(password, id)=> axios({
+    method: "patch",
+    url: "/api/auth/resetpassword/"+ id,
+    data: password,
+    headers: {
+        "content-type": "application/json",
+        "authorization": ""
+    }
+})

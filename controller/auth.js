@@ -63,7 +63,7 @@ exports.forgotPassword = async(req,res,next) =>{
                 from: "rahuldiwakar611@gmail.com",
                 subject: "Password Reset Link",
                 html: `
-                    <p>Hello, ${email}, Here is your password reset link: <a href="#">${`http://localhost:5000/resetpassword/${userId}`}</a> <small>${userId}</small></p>
+                    <p>Hello, ${email}, Here is your password reset link: <a href="http://localhost:3000/resetpassword/${userId}">${`http://localhost:3000/resetpassword/${userId}`}</a> <small>${userId}</small></p>
                 `,
             });
 
@@ -77,11 +77,17 @@ exports.forgotPassword = async(req,res,next) =>{
 }
 exports.resetPassword = async (req,res,next) =>{
     try {
+        console.log(req.params)
         const {newpassword} = req.body;
+        
         const id = req.params.id
+        console.log(id)
 
         const updatedUser = await User.findByIdAndUpdate(id,{password:newpassword}, {new: true});
-        updatedUser.save().then(() => res.send(updatedUser));
+        await updatedUser.save();
+         res.send(updatedUser)
+
+
     } catch (error) {
         next(error);
     }
