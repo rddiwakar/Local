@@ -67,7 +67,7 @@ function Login({updateUser}){
                     <Link to="/forgetPassword">Forgot password ? </Link>
                 </div>
                 <br />
-                <button  role="button" ><a href="http://localhost:5000/api/oAuth/google">Login with google</a></button>
+                <button  role="button" ><a href={`${window.location.origin}/api/oAuth/google`}>Login with google</a></button>
             </form>
         </div>
     )

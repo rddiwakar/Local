@@ -63,7 +63,7 @@ exports.forgotPassword = async(req,res,next) =>{
                 from: "rahuldiwakar611@gmail.com",
                 subject: "Password Reset Link",
                 html: `
-                    <p>Hello, ${email}, Here is your password reset link: <a href="http://localhost:3000/resetpassword/${userId}">${`http://localhost:3000/resetpassword/${userId}`}</a> <small>${userId}</small></p>
+                    <p>Hello, ${email}, Here is your password reset link: <a href="${window.location.origin}/resetpassword/${userId}">Reset Your Password</a> <small>${userId}</small></p>
                 `,
             });
 

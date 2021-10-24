@@ -17,7 +17,7 @@ router.route("/google/callback").get(
         const user = await User.findOne({email:req.user.email});
         const token = user.getSignedToken()
 
-        res.redirect("http://localhost:3000/token?t=" + token);
+        res.redirect(`${window.location.origin}/token?t=` + token);
         
     }
 );
