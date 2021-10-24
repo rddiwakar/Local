@@ -1,5 +1,6 @@
 require("dotenv").config({path: "./config.env"})
 const passport = require("passport");
+const path = require("path");
 require("./utils/passportSetup");
 
 let express = require("express");
@@ -12,10 +13,19 @@ connectdb();
 
 app.use(passport.initialize());
 app.use(express.json());
+
+// Have Node serve the files for our built React app
+app.use(express.static(path.resolve(__dirname, "./clients/build")));
+
 app.use("/uploads", express.static("uploads"));
 app.use("/api/auth",require("./routes/auth"));
 app.use("/api/private",require("./routes/private"));
 app.use ("/api/oAuth" , require("./routes/oAuth"))
+
+// All other get request not handled before will return our React app
+app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "./clients/build", "index.html"));
+  });
 
 // Error Handler
 app.use((err, req, res, next) => {
