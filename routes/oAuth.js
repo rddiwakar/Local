@@ -17,7 +17,7 @@ router.route("/google/callback").get(
         const user = await User.findOne({email:req.user.email});
         const token = user.getSignedToken()
 
-        res.redirect(`${window.location.origin}/token?t=` + token);
+        res.redirect(`https://local-world.herokuapp.com/token?t=` + token);
         
     }
 );

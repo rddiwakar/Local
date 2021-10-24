@@ -5,7 +5,7 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: `${window.location.origin}/api/oAuth/google/callback`
+    callbackURL: `https://local-world.herokuapp.com/api/oAuth/google/callback`
   },
   async function(accessToken, refreshToken, profile, cb) {
     const data = {

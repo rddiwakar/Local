@@ -7,7 +7,7 @@ exports.createPost = async(req,res,next)=>{
     try { 
         const post = await Post.create({
             content,
-            image: req.file ? `${window.location.origin}/${req.file.path}` : "" ,
+            image: req.file ? `https://local-world.herokuapp.com/${req.file.path}` : "" ,
             tags,
             createdby: req.user._id
         });
