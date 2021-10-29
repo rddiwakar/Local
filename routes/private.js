@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { getPrivateData,createAvatar,getNews,changeUsername,changeEmail, createBio, changePassword} = require("../controller/private.js");
 const { protect } = require("../middleware/auth.js");
-const upload = require("../utils/multer");
+const {upload} = require("../utils/multer");
 const {createPost,likePost, deletePost, getAllPost} = require("../controller/post")
 
 

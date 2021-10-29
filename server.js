@@ -1,6 +1,7 @@
 require("dotenv").config({path: "./config.env"})
 const passport = require("passport");
 const path = require("path");
+const cloudinaryConfig = require("./utils/cloudinary");
 require("./utils/passportSetup");
 
 let express = require("express");
@@ -13,6 +14,8 @@ connectdb();
 
 app.use(passport.initialize());
 app.use(express.json());
+
+app.use(cloudinaryConfig);
 
 // Have Node serve the files for our built React app
 app.use(express.static(path.resolve(__dirname, "./clients/build")));

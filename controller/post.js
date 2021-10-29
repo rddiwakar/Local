@@ -1,13 +1,25 @@
 const Post = require("../model/post");
 const User = require("../model/user");
-const mongoose = require("mongoose");
+const {dataUri} = require("../utils/multer");
+const cloudinary = require("cloudinary").v2;
+
 exports.createPost = async(req,res,next)=>{
     const {content,tags} = req.body
 
-    try { 
+    try {
+        let image = "";  
+
+        if (req.file) {
+            console.log(req.file)
+            const file = dataUri(req).content;
+            const result = await cloudinary.uploader.upload(file);
+            console.log(result.url);
+            image = result.url;
+        }
+
         const post = await Post.create({
             content,
-            image: req.file ? `https://local-world.herokuapp.com/${req.file.path}` : "" ,
+            image,
             tags,
             createdby: req.user._id
         });

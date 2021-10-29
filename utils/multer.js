@@ -1,13 +1,9 @@
 const multer = require("multer");
+const DataUri = require("datauri/parser");
+const path = require("path");
 
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, './uploads')
-    },
-    filename: function (req, file, cb) {
-        cb(null, file.originalname)
-    }
-});
+const storage = multer.memoryStorage();
+const dUri = new DataUri();
 
 function fileFilter(req, file, cb) {
     if (file.mimetype == "image/png" || file.mimetype == "image/jpeg") {
@@ -20,4 +16,13 @@ function fileFilter(req, file, cb) {
   
   const upload = multer({ storage, fileFilter })
 
-  module.exports = upload;
+  const dataUri = (req) => {
+    const file = req.file;
+
+    return dUri.format(
+        path.extname(file.originalname).toString(),
+        file.buffer
+    );
+  }
+
+  module.exports = {upload, dataUri};
