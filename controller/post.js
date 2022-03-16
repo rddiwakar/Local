@@ -1,20 +1,21 @@
 const Post = require("../model/post");
 const User = require("../model/user");
-const {dataUri} = require("../utils/multer");
-const cloudinary = require("cloudinary").v2;
 
-exports.createPost = async(req,res,next)=>{
-    const {content,tags} = req.body
+//const { dataUri } = require("../utils/multer");
+//const cloudinary = require("cloudinary").v2;
+
+exports.createPost = async (req, res, next) => {
+    const { content, tags } = req.body
 
     try {
-        let image = "";  
+        let image = "";
 
         if (req.file) {
-            console.log(req.file)
-            const file = dataUri(req).content;
-            const result = await cloudinary.uploader.upload(file);
-            console.log(result.url);
-            image = result.url;
+            image = `${process.env.IMAGE_URL}${req.file.path}`
+            // const file = dataUri(req).content;
+            // const result = await cloudinary.uploader.upload(file)
+            // console.log (result)
+            // image = result.url
         }
 
         const post = await Post.create({
@@ -24,32 +25,32 @@ exports.createPost = async(req,res,next)=>{
             createdby: req.user._id
         });
 
-        const updatedUser = await User.findByIdAndUpdate(req.user._id, {$push: {posts: post._id}},{new: true}).populate("posts").populate({path:"likedpost", populate:{path:"createdby"}});
+        const updatedUser = await User.findByIdAndUpdate(req.user._id, { $push: { posts: post._id } }, { new: true }).populate("posts").populate({ path: "likedpost", populate: { path: "createdby" } });
 
-        res.send({post,updatedUser});
+        res.send({ post, updatedUser });
     } catch (error) {
         next(error)
     }
-    
+
 };
-exports.likePost = async(req,res,next) =>{
-    const {id}= req.params;
+exports.likePost = async (req, res, next) => {
+    const { id } = req.params;
     try {
         const post = await Post.findById(id);
         let updatedUser = {};
         const alreadyLiked = post.likes.includes(req.user._id);
-        
-        if(!alreadyLiked) {
-            await Post.findByIdAndUpdate(post._id, {$push: {likes: req.user._id}});
-            updatedUser = await User.findByIdAndUpdate(req.user._id, {$push: {likedpost: post._id}}, {new: true}).populate("posts").populate({
+
+        if (!alreadyLiked) {
+            await Post.findByIdAndUpdate(post._id, { $push: { likes: req.user._id } });
+            updatedUser = await User.findByIdAndUpdate(req.user._id, { $push: { likedpost: post._id } }, { new: true }).populate("posts").populate({
                 path: "likedpost",
                 populate: {
                     path: "createdby"
                 }
             });
         } else {
-            await Post.findByIdAndUpdate(post._id, {$pull: {likes: req.user._id}});
-            updatedUser = await User.findByIdAndUpdate(req.user._id, {$pull: {likedpost: post._id}}, {new: true}).populate("posts").populate({
+            await Post.findByIdAndUpdate(post._id, { $pull: { likes: req.user._id } });
+            updatedUser = await User.findByIdAndUpdate(req.user._id, { $pull: { likedpost: post._id } }, { new: true }).populate("posts").populate({
                 path: "likedpost",
                 populate: {
                     path: "createdby"
@@ -57,22 +58,22 @@ exports.likePost = async(req,res,next) =>{
             });;
         }
 
-        res.json({post, updatedUser});
+        res.json({ post, updatedUser });
     } catch (error) {
         next(error)
     }
 }
-exports.deletePost = async(req,res,next) =>{
-    const {id} = req.params;
+exports.deletePost = async (req, res, next) => {
+    const { id } = req.params;
     try {
-        await Post.deleteOne({_id:id});
-        const updatedUser = await User.findByIdAndUpdate(req.user._id, {$pull:{posts:id}},{new:true}).populate("posts").populate({path:"likedpost", populate:{path:"createdby"}});
-        res.send({updatedUser})
+        await Post.deleteOne({ _id: id });
+        const updatedUser = await User.findByIdAndUpdate(req.user._id, { $pull: { posts: id } }, { new: true }).populate("posts").populate({ path: "likedpost", populate: { path: "createdby" } });
+        res.send({ updatedUser })
     } catch (error) {
         next(error)
     }
 }
-exports.getAllPost = async(req,res,next) =>{
+exports.getAllPost = async (req, res, next) => {
     try {
         const allPost = await Post.find({}).populate("createdby")
         res.send(allPost)

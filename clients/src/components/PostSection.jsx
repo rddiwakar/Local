@@ -63,7 +63,13 @@ function PostSection({user, updateUser}){
                     content:"",
                     image: null
                 })
-            });
+            })
+            .catch(err=>{
+                Toast.fire({
+                    icon: 'error',
+                    title: 'something went wrong'
+                })
+            })
     }
     const handleLike =(post) =>{
         let id = post._id
