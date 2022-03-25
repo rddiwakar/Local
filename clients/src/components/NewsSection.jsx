@@ -17,7 +17,7 @@ function NewsSection({topics, setTopics}){
             <section>
                 <ul>
                     {topics.map((topic)=>{
-                        return (<li key={topic.title}>
+                        return (<li key={topic.title + Math.random()}>
                                     <div>
                                         <a href={topic.url} target="_blank" rel="noreferrer">
                                             <h4>{topic.title}</h4>

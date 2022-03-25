@@ -44,3 +44,11 @@ export  const changeUserPassword = (password) => axios({
         "authorization": "Bearer "+ localStorage.token
     }
 })
+export  const setProfilePic = (data) => axios({
+    method: "patch",
+    url: "/api/private//upload-avatar",
+    data:data ,
+    headers: {
+        "authorization": "Bearer "+ localStorage.token
+    }
+})

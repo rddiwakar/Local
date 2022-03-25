@@ -8,13 +8,12 @@ import {Link, useHistory} from "react-router-dom";
 
 function ProfileSection({updateUser, user}){
     const history = useHistory();
-
     return(
         <div className="navigation">
             <figure className="profile">
                 <Link to="/private/dashboard/setting">
                     <div className="profile-background">
-                        <img className="profile-image" src={user.avatar||"https://pbs.twimg.com/profile_images/1395655338628587524/XOxnFDlg_400x400.jpg"} alt="profile" />
+                        <img className="profile-image" src={ user.avatar || "https://pbs.twimg.com/profile_images/1395655338628587524/XOxnFDlg_400x400.jpg"} alt="profile" />
                     </div>             
                     <figcaption>
                         <h3>{user.username ||"user"}</h3>

@@ -1,17 +1,18 @@
 import TextArea from "antd/lib/input/TextArea"
-import  Input  from "./input";
+import Input from "./input";
 import "../stylesheet/form.css"
 import Swal from 'sweetalert2';
 import { useState } from "react";
-import { changeUserBio , changeUserEmail, changeUserName, changeUserPassword} from "../api/setting";
-function ProfileSetting({updateUser}){
-    const [settingDetails,setSettingDetails]= useState({
-        username:"",
-        oldpassword:"",
-        newpassword:"",
-        bio:"",
-        oldemail:"",
-        newemail:""
+import { changeUserBio, changeUserEmail, changeUserName, changeUserPassword,setProfilePic } from "../api/setting";
+function ProfileSetting({ updateUser }) {
+    const [settingDetails, setSettingDetails] = useState({
+        username: "",
+        oldpassword: "",
+        newpassword: "",
+        bio: "",
+        oldemail: "",
+        newemail: "",
+        avatar:[],
     })
     const Toast = Swal.mixin({
         toast: true,
@@ -20,20 +21,21 @@ function ProfileSetting({updateUser}){
         timer: 3000,
         timerProgressBar: true,
         didOpen: (toast) => {
-          toast.addEventListener('mouseenter', Swal.stopTimer)
-          toast.addEventListener('mouseleave', Swal.resumeTimer)
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
         }
     })
-    const handleChange = (event) =>{
-        const {name , value} = event.target
-        setSettingDetails({
-            ...settingDetails,
-            [name]: value
-        })
+    const handleChange = (event) => {
+        const { name, value } = event.target
+            setSettingDetails({
+                ...settingDetails,
+                [name]: value
+            }) 
+        console.log(settingDetails) 
     }
-    const changeusername = (event) =>{
+    const changeusername = (event) => {
         event.preventDefault();
-        const username = {username:settingDetails.username}
+        const username = { username: settingDetails.username }
         changeUserName(username)
             .then(res => {
                 updateUser(res.data.user);
@@ -44,12 +46,12 @@ function ProfileSetting({updateUser}){
             })
             .catch(err => console.log(err))
         setSettingDetails({
-            username:""
-        })    
+            username: ""
+        })
     }
-    const changeuserbio = (event) =>{
+    const changeuserbio = (event) => {
         event.preventDefault();
-        const bio = {bio:settingDetails.bio}
+        const bio = { bio: settingDetails.bio }
         changeUserBio(bio)
             .then(res => {
                 updateUser(res.data.user);
@@ -60,12 +62,12 @@ function ProfileSetting({updateUser}){
             })
             .catch(err => console.log(err))
         setSettingDetails({
-            bio:""
-        })    
+            bio: ""
+        })
     }
-    const changeuseremail = (event) =>{
+    const changeuseremail = (event) => {
         event.preventDefault();
-        const email = {oldemail:settingDetails.oldemail,newemail:settingDetails.newemail}
+        const email = { oldemail: settingDetails.oldemail, newemail: settingDetails.newemail }
         changeUserEmail(email)
             .then(res => {
                 updateUser(res.data.user)
@@ -83,13 +85,13 @@ function ProfileSetting({updateUser}){
             })
 
         setSettingDetails({
-            oldemail:"",
-            newemail:""
+            oldemail: "",
+            newemail: ""
         })
     }
-    const changeuserpassword = (event) =>{
+    const changeuserpassword = (event) => {
         event.preventDefault();
-        const password = {oldpassword:settingDetails.oldpassword, newpassword:settingDetails.newpassword};
+        const password = { oldpassword: settingDetails.oldpassword, newpassword: settingDetails.newpassword };
         changeUserPassword(password)
             .then(res => {
                 updateUser(res.data.user);
@@ -98,37 +100,60 @@ function ProfileSetting({updateUser}){
                     title: `Password change successfully`
                 })
             })
-            .catch(error =>{
-                console.log(error)
+            .catch(error => {
                 Toast.fire({
                     icon: 'error',
                     title: `Old password Error`
                 })
             })
     }
-    return(
+    const setAvtar = (event)=>{
+        event.preventDefault();
+        const formData = new FormData();
+        formData.append('name',"Rahul")
+        formData.append('avatar',settingDetails.avatar)
+        setProfilePic(formData)
+            .then(res=>console.log(res))
+            .catch(err=>console.log(err))
+    }
+    const handleAvtar = event =>{
+        console.log(event.target.files[0])
+        setSettingDetails({
+            ...settingDetails,    
+            avatar: event.target.files[0]
+        })
+    }
+    return (
         <>
             <h1>Settings</h1>
             <form className="auth-form profilesetting" >
                 <div>
-                    <Input value={settingDetails.username} onChange={handleChange} type="text" title ="Name" placeholder="change user name" name="username" />
+                    <Input  onChange={handleAvtar} type="file" title="Profile Pic"   />
+                    <button onClick={setAvtar}>change</button>
+                </div>
+                <hr />
+                <div>
+                    <Input value={settingDetails.username} onChange={handleChange} type="text" title="Name" placeholder="change user name" name="username" />
                     <button onClick={changeusername}>change</button>
                 </div>
+                <hr />
                 <div>
-                    <Input value={settingDetails.oldemail} onChange={handleChange} type="text" title ="OldEmail" placeholder="OldPassword" name="oldemail" />
-                    <Input value={settingDetails.newemail} onChange={handleChange} type="text" title ="NewEmail" placeholder="NewPassword" name="newemail" />
-                    <button onClick={changeuseremail}>change</button> 
+                    <Input value={settingDetails.oldemail} onChange={handleChange} type="text" title="OldEmail" placeholder="OldPassword" name="oldemail" />
+                    <Input value={settingDetails.newemail} onChange={handleChange} type="text" title="NewEmail" placeholder="NewPassword" name="newemail" />
+                    <button onClick={changeuseremail}>change</button>
                 </div>
+                <hr />
                 <div>
                     <br />
-                    <TextArea value={settingDetails.bio} onChange={handleChange} name="bio" placeholder="write your bio.." autoSize/>
-                    <br/>
+                    <TextArea value={settingDetails.bio} onChange={handleChange} name="bio" placeholder="write your bio.." autoSize />
+                    <br />
                     <button onClick={changeuserbio}>change</button>
                 </div>
+                <hr />
                 <div>
-                    <Input value={settingDetails.oldpassword} onChange={handleChange} type="password" title = "OldPassword" placeholder="Old Password" name="oldpassword" />
-                    <Input value={settingDetails.newpassword} onChange={handleChange} type="password" title = "NewPassword" placeholder="New Password" name="newpassword" />
-                   
+                    <Input value={settingDetails.oldpassword} onChange={handleChange} type="password" title="OldPassword" placeholder="Old Password" name="oldpassword" />
+                    <Input value={settingDetails.newpassword} onChange={handleChange} type="password" title="NewPassword" placeholder="New Password" name="newpassword" />
+
                     <button onClick={changeuserpassword} >change</button>
                 </div>
             </form>

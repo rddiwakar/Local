@@ -6,6 +6,9 @@
     padding:1rem;
     margin: 20px 0;
 }
+.profilesetting div {
+    margin: 20px 0;
+}
 .profile{
     border:1px solid black;
     padding:1rem;
@@ -16,6 +19,7 @@
 .profile-image{
     border-radius:50%;
     width:8rem;
+    height:8rem;
     border: 1px solid black;
     position:absolute;
     top:6rem;

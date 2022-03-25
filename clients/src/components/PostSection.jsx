@@ -43,7 +43,7 @@ function PostSection({user, updateUser}){
             ...postData,
             content:event.target.value,
         })
-    }
+    } 
 
     const handleSubmit = (event) => {
         event.preventDefault();

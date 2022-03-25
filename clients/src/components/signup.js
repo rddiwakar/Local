@@ -62,7 +62,7 @@ function SignUp({updateUser}){
     return (
         <div className="form-data">
             <div>
-                <h1>Local Morning</h1>
+                <h1>Local Social Media</h1>
                 <p>Share your thoughts and remain updated with the latest news</p>
             </div>
             <form className="auth-form" onSubmit={handleSubmit}>

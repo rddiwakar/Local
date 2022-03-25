@@ -16,8 +16,7 @@ exports.createAvatar = async function(req, res, next) {
     try {
         // Update user avatar here with path (http://localhost:5000/${req.file.path})
         const user = await User.findOne({email:req.user.email})
-        
-        user.avatar = `${window.location.origin}/${req.file.path}`
+        user.avatar = `${process.env.IMAGE_URL}/${req.file.path}`
         user.save();
 
         res.send("Image uploaded successful");
