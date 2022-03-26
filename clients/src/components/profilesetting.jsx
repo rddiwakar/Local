@@ -110,14 +110,23 @@ function ProfileSetting({ updateUser }) {
     const setAvtar = (event)=>{
         event.preventDefault();
         const formData = new FormData();
-        formData.append('name',"Rahul")
         formData.append('avatar',settingDetails.avatar)
         setProfilePic(formData)
-            .then(res=>console.log(res))
-            .catch(err=>console.log(err))
+        .then(res => {
+            updateUser(res.data.user);
+            Toast.fire({
+                icon: 'success',
+                title: `Pic change successfully`
+            })
+        })
+        .catch(error => {
+            Toast.fire({
+                icon: 'error',
+                title: `Error Occured`
+            })
+        })
     }
     const handleAvtar = event =>{
-        console.log(event.target.files[0])
         setSettingDetails({
             ...settingDetails,    
             avatar: event.target.files[0]
