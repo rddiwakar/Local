@@ -11,7 +11,7 @@ exports.createPost = async (req, res, next) => {
         let image = "";
 
         if (req.file) {
-            image = `${process.env.IMAGE_URL}${req.file.path}`
+            image = `https://local-world.herokuapp.com/${req.file.path}`
             // const file = dataUri(req).content;
             // const result = await cloudinary.uploader.upload(file)
             // console.log (result)
