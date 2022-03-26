@@ -19,7 +19,7 @@ exports.createAvatar = async function(req, res, next) {
         user.avatar = `https://local-world.herokuapp.com/${req.file.path}`
         user.save();
 
-        res.send("Image uploaded successful");
+        res.send({message:"Pic change successfully", user})
     } catch (error) {
         next(error)
     }
