@@ -16,7 +16,7 @@ function ProfileSection({updateUser, user}){
                         <img className="profile-image" src={ user.avatar || "https://pbs.twimg.com/profile_images/1395655338628587524/XOxnFDlg_400x400.jpg"} alt="profile" />
                     </div>             
                     <figcaption>
-                        <h3>{user.username ||"user"}</h3>
+                        <h3 style={{textTransform:'capitalize'}}>{user.username ||"user"}</h3>
                     </figcaption>
                     <p>{user.bio}</p>
                 </Link>
@@ -26,7 +26,7 @@ function ProfileSection({updateUser, user}){
                 <div>
                     <div className="profile-follow">
                         <h3>Follower</h3>
-                        <p>260</p>
+                        <p>2</p>
                     </div>
                     <div className="profile-follow">
                         <h3>Following</h3>

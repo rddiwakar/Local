@@ -15,11 +15,10 @@
 .form-post-header img{
     width:6rem;
     height: 6rem;
-    border: 2px inset black;
+    border: 1px inset black;
     border-radius: 50%;
-    
-    
 }
+
 .postform-data form{
     width:80%;
 }
@@ -51,11 +50,8 @@
     margin:1rem;
 }
 .form-post-header{
-    width:35%;
-
     display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
+    align-items: center;
 }
 
 .postimg{

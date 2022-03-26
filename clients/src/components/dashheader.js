@@ -4,6 +4,7 @@ import "../stylesheet/dashHeader.css";
 import {Link} from "react-router-dom";
 import { newsApi } from "../api/postapi";
 import { useEffect, useState } from "react";
+import logo from '../Assets/logo.svg'
 
 function DashHeader({setTopics}){
      const [newsTopic,setNewsTopic]=useState("")
@@ -25,7 +26,10 @@ function DashHeader({setTopics}){
         }
     return(
         <div className="dash_header">
-            <h3><Link to="/private/dashboard"> Local </Link></h3>
+            <h3><Link to="/private/dashboard"> 
+                <img src={logo} /> 
+                <span style={{paddingLeft:"10px"}}>Local</span> </Link>
+            </h3>
                 <div className="searchbar">
                     <input value={newsTopic} onChange={handleChange} placeholder="search latest news here"/>
                     <p onClick={handleSubmit}><SearchIcon size="2rem"/></p>

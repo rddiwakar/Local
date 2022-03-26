@@ -1,5 +1,6 @@
 import "../stylesheet/postform.css";
 import Gallery from "remixicon-react/ImageLineIcon";
+import LikeIcon from 'remixicon-react/HeartFillIcon';
 import {Input} from "antd";
 import Swal from 'sweetalert2';
 import { useEffect, useState } from "react";
@@ -113,21 +114,22 @@ function PostSection({user, updateUser}){
             {
                 allPost.map(post => {
                     return (
-                        <section className="postform-post" key ={post._id} >
+                        <section className="postform-post" key ={post._id} >  
                             
                             <div className="form-post-header">
                                 <img className="logo-img" src ={post.createdby.avatar} alt="profile"  />
-                                <h3>{post.createdby.username}</h3>
+                                <h2 style={{paddingLeft:'1rem',textTransform:'capitalize'}}>{post.createdby.username}</h2>
                             </div>
                             <hr />
                             <div>
                                 <p>{post.content}</p>
                             </div>
                             <div>
-                                {post.image && <img className="postimg" src={post.image} alt="postimg" />}
+                                {post.image && <img className="postimg" src={post.image} alt="postimg"  />}
                             </div>
-                            <div>
-                                <button onClick={()=>handleLike(post)}>Like {post.likes.length}</button>
+                            <div onClick={()=>handleLike(post)} style={{display:'flex',alignItems:'center'}}>
+                                <LikeIcon color='red'></LikeIcon> 
+                                <h3>{post.likes.length}</h3>
                             </div>
                         </section>
                     )
